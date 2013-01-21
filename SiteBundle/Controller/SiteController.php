@@ -91,7 +91,7 @@ class SiteController extends Controller
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($enseignant);
 				$em->flush();
-		 
+				echo "<script>alert(\"L'enseignant est ajouté\")</script>"; 
 				// On redirige vers la page de visualisation de l'article nouvellement créé
 				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
 			  }
