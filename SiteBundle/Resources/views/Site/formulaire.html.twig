@@ -1,0 +1,37 @@
+<h3>Formulaire de l'enseignant</h3>
+ 
+<div class="well">
+    <form method="post" {{ form_enctype(form) }}>
+			<!-- Les erreurs générales du formulaire. -->
+		{{ form_errors(form) }}
+		 
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.nomEn, "Nom de merde") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.nomEn) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.nomEn) }}
+		</div>
+		
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.prenomEn, "Prenom de merde") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.prenomEn) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.prenomEn) }}
+		</div>
+		 
+		<!-- Génération des champs pas encore écrits.
+		   Dans cet exemple, ça serait « date », « auteur » et « publication »,
+		   mais aussi le champ CSRF (géré automatiquement par Symfony !)
+		   et tous les champs cachés (type « hidden »). -->
+		{{ form_rest(form) }}
+        <input type="submit" class="btn btn-primary" />
+    </form>
+</div>

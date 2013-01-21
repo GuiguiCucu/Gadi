@@ -1,0 +1,7 @@
+parameters:
+#    gadi_site.example.class: Gadi\SiteBundle\Example
+
+services:
+#    gadi_site.example:
+#        class: %gadi_site.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

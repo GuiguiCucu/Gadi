@@ -1,0 +1,25 @@
+# src/Gadi/SiteBundle/Resources/config/routing.yml
+ 
+gadisite_accueil:
+    pattern:   /{page}
+    defaults:  { _controller: GadiSiteBundle:Site:index, page: 1 }
+    requirements:
+        page:  \d*
+     
+gadisite_voir:
+    pattern:   /article/{id}
+    defaults:  { _controller: GadiSiteBundle:Site:voir }	
+    requirements:
+        id:  \d+
+gadisite_voir_slug:
+    pattern:   /{annee}/{slug}.{format}
+    defaults:  { _controller: GadiSiteBundle:Site:voirSlug }
+    requirements:
+        annee:  \d{4}
+        format: html|xml
+     
+gadisite_ajouter:
+    pattern:   /ajouter/{type}
+    defaults:  { _controller: GadiSiteBundle:Site:ajouter }
+    requirements:
+        format: enseignant|etudiant

@@ -1,0 +1,15 @@
+{# src/Gadi/SiteBundle/Resources/views/index.html.twig #}
+  
+{% extends "GadiSiteBundle::layout.html.twig" %}
+ 
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+ 
+{% block gadisite_body %}
+ 
+  <h2>Ajout d'etudiant</h2>
+ 
+{% include "GadiSiteBundle:Site:formulaireEtudiant.html.twig" %}
+ 
+{% endblock %}
