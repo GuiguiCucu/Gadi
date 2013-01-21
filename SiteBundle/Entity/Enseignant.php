@@ -12,11 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Enseignant
 {
-   /**
-   * @ORM\ManyToOne(targetEntity="Gadi\SiteBundle\Entity\TypeEnseignant")
-   * @ORM\JoinColumn(nullable=false)
-   */
-   private $TypeEnseignant;
     /**
      * @var integer
      *
@@ -26,6 +21,11 @@ class Enseignant
      */
     private $id;
 
+   /**
+   * @ORM\ManyToOne(targetEntity="Gadi\SiteBundle\Entity\TypeEnseignant")
+   * @ORM\JoinColumn(nullable=false)
+   */
+   private $TypeEnseignant;	
     /**
      * @var string
      *
@@ -39,6 +39,13 @@ class Enseignant
      * @ORM\Column(name="prenomEn", type="string", length=50)
      */
     private $prenomEn;
+	
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="heureAnnee", type="integer")
+     */
+    private $heureAnnee;
 
 	public function __construct()
 	  {
@@ -103,25 +110,48 @@ class Enseignant
     }
 
     /**
-     * Set TypeEnseignant
+     * Set typeEnseignant
      *
      * @param \Gadi\SiteBundle\Entity\TypeEnseignant $typeEnseignant
      * @return Enseignant
      */
     public function setTypeEnseignant(\Gadi\SiteBundle\Entity\TypeEnseignant $typeEnseignant)
     {
-        $this->TypeEnseignant = $typeEnseignant;
+        $this->typeEnseignant = $typeEnseignant;
     
         return $this;
     }
 
     /**
-     * Get TypeEnseignant
+     * Get typeEnseignant
      *
      * @return \Gadi\SiteBundle\Entity\TypeEnseignant 
      */
     public function getTypeEnseignant()
     {
-        return $this->TypeEnseignant;
+        return $this->typeEnseignant;
+    }
+	
+    /**
+     * Set heureAnnee
+     *
+     * @param integer $heureMaxAnn
+     * @return TypeEnseignant
+     */
+    public function setHeureAnnee($heureAnnee)
+    {
+        $this->heureAnnee = $heureAnnee;
+    
+        return $this;
+    }
+
+    /**
+     * Get heureAnnee
+     *
+     * @return integer 
+     */
+    public function getHeureAnnee()
+    {
+        return $this->heureAnnee;
     }
 }

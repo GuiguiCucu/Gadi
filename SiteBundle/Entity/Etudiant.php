@@ -34,6 +34,12 @@ class Etudiant
      * @ORM\Column(name="prenom", type="string", length=255)
      */
     private $prenom;
+	
+	/**
+   * @ORM\ManyToOne(targetEntity="Gadi\SiteBundle\Entity\Groupe")
+   * @ORM\JoinColumn(nullable=false)
+   */
+   private $groupe;
 
 
     /**
@@ -90,5 +96,28 @@ class Etudiant
     public function getPrenom()
     {
         return $this->prenom;
+    }
+	
+    /**
+     * Set Groupe
+     *
+     * @param \Gadi\SiteBundle\Entity\Groupe $groupe
+     * @return Groupe
+     */
+    public function setGroupe(\Gadi\SiteBundle\Entity\Groupe $groupe)
+    {
+        $this->groupe = $groupe;
+    
+        return $this;
+    }
+
+    /**
+     * Get Groupe
+     *
+     * @return \Gadi\SiteBundle\Entity\Groupe 
+     */
+    public function getGroupe()
+    {
+        return $this->groupe;
     }
 }
