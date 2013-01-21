@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Gadi\SiteBundle\Entity\Enseignant;
 use Gadi\SiteBundle\Entity\TypeEnseignant;
 use Gadi\SiteBundle\Entity\Etudiant;
+use Gadi\SiteBundle\Entity\QuotaGroupe;
  
 class SiteController extends Controller
 {
@@ -184,6 +185,47 @@ class SiteController extends Controller
 		 
 		  // On passe la méthode createView() du formulaire à la vue afin qu'elle puisse afficher le formulaire toute seule
 		  return $this->render('GadiSiteBundle:Site:ajouterTypeEnseignant.html.twig', array(
+			'form' => $form->createView(),
+		  ));
+	}
+	else if ($type=="quotagroupe") {
+		  // On crée un objet quotagroupe
+		  $quotagroupe = new QuotaGroupe();
+		 
+		  // On crée le FormBuilder grâce à la méthode du contrôleur
+		  $formBuilder = $this->createFormBuilder($quotaGroupe);
+		 
+		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
+		  $formBuilder
+			->add('heureSemaine',    'integer');
+		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
+		 
+		  // À partir du formBuilder, on génère le formulaire
+		  $form = $formBuilder->getForm();
+		  
+		      // On récupère la requête
+			$request = $this->get('request');
+		 
+			// On vérifie qu'elle est de type POST
+			if ($request->getMethod() == 'POST') {
+			  // On fait le lien Requête <-> Formulaire
+			  $form->bind($request);
+		 
+			  // On vérifie que les valeurs rentrées sont correctes
+			 
+			  if ($form->isValid()) {
+				// On l'enregistre notre objet $article dans la base de données
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($quotagroupe);
+				$em->flush();
+		 
+				// On redirige vers la page de visualisation de l'article nouvellement créé
+				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
+			  }
+			}
+		 
+		  // On passe la méthode createView() du formulaire à la vue afin qu'elle puisse afficher le formulaire toute seule
+		  return $this->render('GadiSiteBundle:Site:ajouterQuotaGroupe.html.twig', array(
 			'form' => $form->createView(),
 		  ));
 	}

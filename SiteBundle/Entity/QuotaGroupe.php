@@ -119,4 +119,11 @@ class QuotaGroupe
     {
         return $this->semaine;
     }
+	
+	public function __construct()
+	  {
+		$this->heureSemaine = 0;
+		
+	  }
+
 }
