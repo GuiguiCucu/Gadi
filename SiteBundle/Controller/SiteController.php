@@ -123,9 +123,7 @@ class SiteController extends Controller
 		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
 		  $formBuilder
 			->add('nom',    'text')
-			->add('prenom', 'text')
-			->add('groupe', 'entity', array('class' => 'GadiSiteBundle:Groupe', 'property' => 'nomG'))
-			;
+			->add('prenom', 'text');
 		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
 		 
 		  // À partir du formBuilder, on génère le formulaire
@@ -252,7 +250,10 @@ class SiteController extends Controller
 		 
 		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
 		  $formBuilder
-			->add('heureSemaine',    'integer');
+			->add('heuresemaine',    'integer');
+			->add('Semestre', 'entity', array('class' => 'GadiSiteBundle:Semestre', 'property' => 'libelle'));
+			->add('Groupe', 'entity', array('class' => 'GadiSiteBundle:Groupe', 'property' => 'numg'));
+			->add('Semaine', 'entity', array('class' => 'GadiSiteBundle:Semaine', 'property' => 'numero'));
 		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
 		 
 		  // À partir du formBuilder, on génère le formulaire
@@ -342,9 +343,7 @@ class SiteController extends Controller
 		 
 		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
 		  $formBuilder
-			->add('heureSemaine',    'integer')
-			->add('enseignant', 'entity', array('class' => 'GadiSiteBundle:Enseignant', 'property' =>'nomEn'))
-			->add('semaine', 'entity', array('class' => 'GadiSiteBundle:Semaine', 'property' => 'numero'));
+			->add('heureSemaine',    'integer');
 		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
 		 
 		  // À partir du formBuilder, on génère le formulaire
@@ -365,14 +364,14 @@ class SiteController extends Controller
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($quotagroupe);
 				$em->flush();
-				echo "<script>alert(\"Le quota enseignant est créé\")</script>";
+		 
 				// On redirige vers la page de visualisation de l'article nouvellement créé
 				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
 			  }
 			}
 		 
 		  // On passe la méthode createView() du formulaire à la vue afin qu'elle puisse afficher le formulaire toute seule
-		  return $this->render('GadiSiteBundle:Site:ajouterQuotaEnseignant.html.twig', array(
+		  return $this->render('GadiSiteBundle:Site:ajouterQuotaGroupe.html.twig', array(
 			'form' => $form->createView(),
 		  ));
 	}

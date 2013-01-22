@@ -1,7 +1,54 @@
 <h3>Formulaire du QuotaGroupe</h3>
  
-<div class="well">
-    <form method="post" {{ form_enctype(form) }}>
+<form method="post" {{ form_enctype(form) }}>
+
+
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.heureSemaine, "Heure par semaine max") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.heureSemaine) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.heureSemaine) }}
+		</div>
+		
+		
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.semestre, "semestres") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.semestre) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.semestre) }}
+		</div>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.groupe, "groupes") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.groupe) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.groupe) }}
+		</div>
+		
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.semaine, "semaines") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.semaine) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.semaine) }}
+		</div>
+		
+
+		
         {{ form_widget(form) }}
         <input type="submit" class="btn btn-primary" />
     </form>
