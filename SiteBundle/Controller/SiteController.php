@@ -316,16 +316,13 @@ class SiteController extends Controller
 				$nbsemaine = $semestre->nombreSemaines();
 				$date = $semestre->getDateDebut();
 				$date2 = $date;
-				echo "<script>alert($nbsemaine)</script>";
 				
-				for ($i = 1; $i <= $nbsemaine; $i++) {
-					$date2->add(new \DateInterval('P06D'));
-					$semaine = new Semaine($semestre, $i, $date,  $date2);
+				for ($i = 1; $i <=$nbsemaine+1; $i++) {					
+					$semaine = new Semaine($semestre, $i, $date,  $date2->add(new \DateInterval('P06D')));
 					$sm = $this->getDoctrine()->getManager();
 					$sm->persist($semaine);
 					$sm->flush();
 					$date2->add(new \DateInterval('P01D'));
-					$date->add(new \DateInterval('P07D'));
 				}
 				echo "<script>alert(\"Le semestre a été ajouté avec ses semaines\")</script>";
 				}

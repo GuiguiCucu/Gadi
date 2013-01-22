@@ -133,7 +133,7 @@ class Semestre
 		$d1 = $this->getDateDebut();
 		$d2 = $this->getDateFin();
 		$diff = $d1->diff($d2); 
-		$nb_jours = $diff->d;
+		$nb_jours = $diff->days;
 		$nb_jours =$nb_jours/7;
 		return $nb_jours;
 	
