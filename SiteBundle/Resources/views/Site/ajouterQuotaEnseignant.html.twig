@@ -1,0 +1,15 @@
+{# src/Gadi/SiteBundle/Resources/views/index.html.twig #}
+  
+{% extends "GadiSiteBundle::layout.html.twig" %}
+ 
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+ 
+{% block gadisite_body %}
+ 
+  <h2>Ajout d'un Quota Enseignant</h2>
+ 
+{% include "GadiSiteBundle:Site:formulaireQuotaEnseignant.html.twig" %}
+ 
+{% endblock %}

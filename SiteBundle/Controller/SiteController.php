@@ -14,6 +14,7 @@ use Gadi\SiteBundle\Entity\Groupe;
 use Gadi\SiteBundle\Entity\QuotaGroupe;
 use Gadi\SiteBundle\Entity\Semestre;
 use Gadi\SiteBundle\Entity\Semaine;
+use Gadi\SiteBundle\Entity\QuotaEnseignant;
  
 class SiteController extends Controller
 {
@@ -363,6 +364,47 @@ class SiteController extends Controller
 				}
 			}
 		  return $this->render('GadiSiteBundle:Site:ajouterSemestre.html.twig', array(
+			'form' => $form->createView(),
+		  ));
+	}
+	else if ($type=="quotaenseignant") {
+		  // On crée un objet quotagroupe
+		  $quotaenseignant = new QuotaEnseignant();
+		 
+		  // On crée le FormBuilder grâce à la méthode du contrôleur
+		  $formBuilder = $this->createFormBuilder($quotaenseignant);
+		 
+		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
+		  $formBuilder
+			->add('heureSemaine',    'integer');
+		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
+		 
+		  // À partir du formBuilder, on génère le formulaire
+		  $form = $formBuilder->getForm();
+		  
+		      // On récupère la requête
+			$request = $this->get('request');
+		 
+			// On vérifie qu'elle est de type POST
+			if ($request->getMethod() == 'POST') {
+			  // On fait le lien Requête <-> Formulaire
+			  $form->bind($request);
+		 
+			  // On vérifie que les valeurs rentrées sont correctes
+			 
+			  if ($form->isValid()) {
+				// On l'enregistre notre objet $article dans la base de données
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($quotagroupe);
+				$em->flush();
+		 
+				// On redirige vers la page de visualisation de l'article nouvellement créé
+				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
+			  }
+			}
+		 
+		  // On passe la méthode createView() du formulaire à la vue afin qu'elle puisse afficher le formulaire toute seule
+		  return $this->render('GadiSiteBundle:Site:ajouterQuotaGroupe.html.twig', array(
 			'form' => $form->createView(),
 		  ));
 	}

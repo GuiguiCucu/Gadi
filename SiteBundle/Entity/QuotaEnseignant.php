@@ -118,4 +118,14 @@ class QuotaEnseignant
     {
         return $this->semaine;
     }
+	
+	/**
+     * constructeur
+     *
+     */
+	public function __construct()
+	{
+		$this->heureSemaine = 0;
+		
+	}
 }
