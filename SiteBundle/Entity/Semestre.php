@@ -127,4 +127,15 @@ class Semestre
     {
         return $this->dateFin;
     }
+	
+	public function nombreSemaines()
+	{		
+		$d1 = getDateDebut();
+		$d2 = getDateFin();
+		$diff = $d1->diff($d2); 
+		$nb_jours = $diff->d;
+		$nb_jours =$nb_jours/7;
+		return $nb_jours;
+	
+	}
 }

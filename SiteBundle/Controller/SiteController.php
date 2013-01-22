@@ -312,22 +312,22 @@ class SiteController extends Controller
 				// On l'enregistre notre objet $article dans la base de données
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($semestre);
-				//$em->flush();
+				$em->flush();
 				$nbsemaine = $semestre->nombreSemaines();
 				$date = $semestre->getDateDebut();
 				$date2 = $date;
 				echo "<script>alert($nbsemaine)</script>";
-				/*
+				
 				for ($i = 1; $i <= $nbsemaine; $i++) {
-					$date2->add(new \DateInterval('P6D'));
-					$semaine = new Semaine($i, $date,  $date2, $semestre);
+					$date2->add(new \DateInterval('P06D'));
+					$semaine = new Semaine($semestre, $i, $date,  $date2);
 					$sm = $this->getDoctrine()->getManager();
 					$sm->persist($semaine);
 					$sm->flush();
-					$date2->add(new \DateInterval('P1D'));
-					$date->add(new \DateInterval('P7D'));
+					$date2->add(new \DateInterval('P01D'));
+					$date->add(new \DateInterval('P07D'));
 				}
-				echo "<script>alert(\"Le semestre a été ajouté avec ses semaines\")</script>";*/
+				echo "<script>alert(\"Le semestre a été ajouté avec ses semaines\")</script>";
 				}
 			}
 		  return $this->render('GadiSiteBundle:Site:ajouterSemestre.html.twig', array(

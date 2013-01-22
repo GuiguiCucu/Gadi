@@ -48,7 +48,14 @@ class Semaine
      */
     private $dateFin;
 
-
+	public function __construct($semestre, $numero, $dateDebut, $dateFin)
+	  {
+	    $this->semestre = $semestre;
+		$this->numero = $numero;
+		$this->dateDebut = $dateDebut;
+		$this->dateFin = $dateFin;
+	  }
+	
     /**
      * Get id
      *
