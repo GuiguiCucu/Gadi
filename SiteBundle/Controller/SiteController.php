@@ -123,7 +123,9 @@ class SiteController extends Controller
 		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
 		  $formBuilder
 			->add('nom',    'text')
-			->add('prenom', 'text');
+			->add('prenom', 'text')
+			->add('groupe', 'entity', array('class' => 'GadiSiteBundle:Groupe', 'property' => 'nomG'))
+			;
 		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
 		 
 		  // À partir du formBuilder, on génère le formulaire
