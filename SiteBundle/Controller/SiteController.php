@@ -365,9 +365,9 @@ class SiteController extends Controller
 			  if ($form->isValid()) {
 				// On l'enregistre notre objet $article dans la base de données
 				$em = $this->getDoctrine()->getManager();
-				$em->persist($quotagroupe);
+				$em->persist($quotaenseignant);
 				$em->flush();
-		 
+				echo "<script>alert(\"Le quota enseignant a été ajouté\")</script>";
 				// On redirige vers la page de visualisation de l'article nouvellement créé
 				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
 			  }
