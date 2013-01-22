@@ -11,6 +11,8 @@ use Gadi\SiteBundle\Entity\Enseignant;
 use Gadi\SiteBundle\Entity\TypeEnseignant;
 use Gadi\SiteBundle\Entity\Etudiant;
 use Gadi\SiteBundle\Entity\QuotaGroupe;
+use Gadi\SiteBundle\Entity\Semestre;
+use Gadi\SiteBundle\Entity\Semaine;
  
 class SiteController extends Controller
 {
@@ -213,8 +215,7 @@ class SiteController extends Controller
 			  // On fait le lien Requête <-> Formulaire
 			  $form->bind($request);
 		 
-			  // On vérifie que les valeurs rentrées sont correctes
-			 
+			  // On vérifie que les valeurs rentrées sont correctes			 
 			  if ($form->isValid()) {
 				// On l'enregistre notre objet $article dans la base de données
 				$em = $this->getDoctrine()->getManager();
@@ -228,6 +229,56 @@ class SiteController extends Controller
 		 
 		  // On passe la méthode createView() du formulaire à la vue afin qu'elle puisse afficher le formulaire toute seule
 		  return $this->render('GadiSiteBundle:Site:ajouterQuotaGroupe.html.twig', array(
+			'form' => $form->createView(),
+		  ));
+	}
+	else if ($type=="semestre") {
+		  // On crée un objet semestre
+		  $semestre = new Semestre();
+		 
+		  // On crée le FormBuilder grâce à la méthode du contrôleur
+		  $formBuilder = $this->createFormBuilder($semestre);
+		 
+		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
+		  $formBuilder		  
+			->add('libelle',        'text')
+			->add('dateDebut', 'date')
+			->add('dateFin',     'date');
+		  // À partir du formBuilder, on génère le formulaire
+		  $form = $formBuilder->getForm();
+		  
+		      // On récupère la requête
+			$request = $this->get('request');
+		 
+			// On vérifie qu'elle est de type POST
+			if ($request->getMethod() == 'POST') {
+			  // On fait le lien Requête <-> Formulaire
+			  $form->bind($request);
+		 
+			  // On vérifie que les valeurs rentrées sont correctes
+			  if ($form->isValid()) {
+				// On l'enregistre notre objet $article dans la base de données
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($semestre);
+				//$em->flush();
+				$nbsemaine = $semestre->nombreSemaines();
+				$date = $semestre->getDateDebut();
+				$date2 = $date;
+				echo "<script>alert($nbsemaine)</script>";
+				/*
+				for ($i = 1; $i <= $nbsemaine; $i++) {
+					$date2->add(new \DateInterval('P6D'));
+					$semaine = new Semaine($i, $date,  $date2, $semestre);
+					$sm = $this->getDoctrine()->getManager();
+					$sm->persist($semaine);
+					$sm->flush();
+					$date2->add(new \DateInterval('P1D'));
+					$date->add(new \DateInterval('P7D'));
+				}
+				echo "<script>alert(\"Le semestre a été ajouté avec ses semaines\")</script>";*/
+				}
+			}
+		  return $this->render('GadiSiteBundle:Site:ajouterSemestre.html.twig', array(
 			'form' => $form->createView(),
 		  ));
 	}
