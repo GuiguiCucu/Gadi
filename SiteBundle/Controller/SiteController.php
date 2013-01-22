@@ -293,18 +293,8 @@ class SiteController extends Controller
 		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
 		  $formBuilder		  
 			->add('libelle',        'text')
-			->add('dateDebut', 'date', array(
-                                                'widget' => 'single_text',
-                                                'input' => 'datetime',
-                                                'format' => 'dd/MM/yyyy',
-                                                'attr' => array('class' => 'date'),
-                                                ))
-			->add('dateFin',     'date', array(
-                                                'widget' => 'single_text',
-                                                'input' => 'datetime',
-                                                'format' => 'dd/MM/yyyy',
-                                                'attr' => array('class' => 'date'),
-                                                ));
+			->add('dateDebut', 'date')
+			->add('dateFin',     'date');
 		  // À partir du formBuilder, on génère le formulaire
 		  $form = $formBuilder->getForm();
 		  
