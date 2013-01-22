@@ -76,7 +76,7 @@ class SiteController extends Controller
 		  $formBuilder
 			->add('nomEn',    'text')
 			->add('prenomEn', 'text')
-			->add('typeEnseignant', 'choice', array("choices" => $this->getTypeEnseignants()));
+			->add('typeEnseignant', 'entity', array('class' => 'GadiSiteBundle:TypeEnseignant', 'property' => 'intitule'));
 		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
 		 
 		  // À partir du formBuilder, on génère le formulaire
@@ -88,6 +88,11 @@ class SiteController extends Controller
 			// On vérifie qu'elle est de type POST
 			if ($request->getMethod() == 'POST') {
 			  // On fait le lien Requête <-> Formulaire
+			  
+			 // $intitule = $request->get('typeEnseignant');
+			 // $typeEns = $this->getDoctrine()->getRepository('GadiSiteBundle:TypeEnseignant')->find(1);
+			 // $request->request->set('typeEnseignant', $typeEns);
+			  
 			  $form->bind($request);
 		 
 			  // On vérifie que les valeurs rentrées sont correctes
@@ -182,6 +187,7 @@ class SiteController extends Controller
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($typeEn);
 				$em->flush();
+				echo "<script>alert(\"Le type d'enseignant est ajouté\")</script>"; 
 			  }
 			}
 		 
@@ -233,49 +239,7 @@ class SiteController extends Controller
 			'form' => $form->createView(),
 		  ));
 	}
-	
-	
-	else if ($type=="typeEn") {
-		  // On crée un objet Etudiant
-		  $typeEn = new TypeEnseignant();
-		 
-		  // On crée le FormBuilder grâce à la méthode du contrôleur
-		  $formBuilder = $this->createFormBuilder($typeEn);
-		 
-		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
-		  $formBuilder
-			->add('NomG',    'text');
-		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
-		 
-		  // À partir du formBuilder, on génère le formulaire
-		  $form = $formBuilder->getForm();
-		  
-		      // On récupère la requête
-			$request = $this->get('request');
-		 
-			// On vérifie qu'elle est de type POST
-			if ($request->getMethod() == 'POST') {
-			  // On fait le lien Requête <-> Formulaire
-			  $form->bind($request);
-		 
-			  // On vérifie que les valeurs rentrées sont correctes
-			  // (Nous verrons la validation des objets en détail plus bas dans ce chapitre)
-			  if ($form->isValid()) {
-				// On l'enregistre notre objet $article dans la base de données
-				$em = $this->getDoctrine()->getManager();
-				$em->persist($typeEn);
-				$em->flush();
-		 
-				// On redirige vers la page de visualisation de l'article nouvellement créé
-				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
-			  }
-			}
-		 
-		  // On passe la méthode createView() du formulaire à la vue afin qu'elle puisse afficher le formulaire toute seule
-		  return $this->render('GadiSiteBundle:Site:ajouterGroupe.html.twig', array(
-			'form' => $form->createView(),
-		  ));
-	}
+
 
 	else if ($type=="quotagroupe") {
 		  // On crée un objet quotagroupe
@@ -408,15 +372,5 @@ class SiteController extends Controller
 			'form' => $form->createView(),
 		  ));
 	}
-  }
-  // permet de retourner dans un tableau tous les intitulés des types enseignants, utilisée dans ajouterEnseignant
-  public function getTypeEnseignants()
-    {
-		$array_return = array();
-        $array_typeEnseignants = $this->getDoctrine()->getRepository('GadiSiteBundle:TypeEnseignant')->findAll();
-		foreach ($array_typeEnseignants as $typeEnseignant) {
-			$array_return[$typeEnseignant->getId()] = $typeEnseignant->getIntitule();
-		}
-		return $array_return;
   }
 }

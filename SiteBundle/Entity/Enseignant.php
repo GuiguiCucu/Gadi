@@ -51,6 +51,7 @@ class Enseignant
 	  {
 		$this->NomEn = " ";
 		$this->setPrenomEn = " ";
+		$this->setHeureAnnee(0);
 	  }
 
     /**
