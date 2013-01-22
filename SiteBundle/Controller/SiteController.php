@@ -197,7 +197,7 @@ class SiteController extends Controller
 		  $quotagroupe = new QuotaGroupe();
 		 
 		  // On crée le FormBuilder grâce à la méthode du contrôleur
-		  $formBuilder = $this->createFormBuilder($quotaGroupe);
+		  $formBuilder = $this->createFormBuilder($quotagroupe);
 		 
 		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
 		  $formBuilder
