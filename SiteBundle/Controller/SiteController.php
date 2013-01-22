@@ -373,7 +373,7 @@ class SiteController extends Controller
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($quotagroupe);
 				$em->flush();
-		 
+				echo "<script>alert(\"Le quota enseignant est créé\")</script>";
 				// On redirige vers la page de visualisation de l'article nouvellement créé
 				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
 			  }
