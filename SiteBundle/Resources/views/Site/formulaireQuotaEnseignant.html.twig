@@ -1,7 +1,39 @@
-<h3>Formulaire de l'etudiant</h3>
+<h3>Formulaire de l'enseignant</h3>
  
 <div class="well">
     <form method="post" {{ form_enctype(form) }}>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.heureSemaine, "Heure par semaine max") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.heureSemaine) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.heureSemaine) }}
+		</div>
+		
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.enseignant, "Enseignant") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.enseignant) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.enseignant) }}
+		</div>
+		
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.semaine, "Semaine") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.semaine) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.semaine) }}
+		</div>
         {{ form_widget(form) }}
         <input type="submit" class="btn btn-primary" />
     </form>
