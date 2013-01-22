@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Gadi\SiteBundle\Entity\Enseignant;
 use Gadi\SiteBundle\Entity\TypeEnseignant;
 use Gadi\SiteBundle\Entity\Etudiant;
+use Gadi\SiteBundle\Entity\Groupe;
 use Gadi\SiteBundle\Entity\QuotaGroupe;
 use Gadi\SiteBundle\Entity\Semestre;
 use Gadi\SiteBundle\Entity\Semaine;
@@ -74,8 +75,7 @@ class SiteController extends Controller
 		  $formBuilder
 			->add('nomEn',    'text')
 			->add('prenomEn', 'text')
-			->add('typeEnseignant', 'choice', array("choices" => $this->getTypeEnseignants()))
-			;
+			->add('typeEnseignant', 'choice', array("choices" => $this->getTypeEnseignants()));
 		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
 		 
 		  // À partir du formBuilder, on génère le formulaire
@@ -149,7 +149,7 @@ class SiteController extends Controller
 			'form' => $form->createView(),
 		  ));
 	}
-	else if ($type=="Groupe") {
+	else if ($type=="typeEn") {
 		  // On crée un objet Etudiant
 		  $typeEn = new TypeEnseignant();
 		 
@@ -181,9 +181,6 @@ class SiteController extends Controller
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($typeEn);
 				$em->flush();
-		 
-				// On redirige vers la page de visualisation de l'article nouvellement créé
-				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
 			  }
 			}
 		 
@@ -224,7 +221,7 @@ class SiteController extends Controller
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($groupe);
 				$em->flush();
-				echo "<script>alert(\"L'étudiant est ajouté\")</script>"; 
+				echo "<script>alert(\"Le groupe est ajouté\")</script>"; 
 				// On redirige vers la page de visualisation de l'article nouvellement créé
 				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
 			  }
@@ -246,7 +243,7 @@ class SiteController extends Controller
 		 
 		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
 		  $formBuilder
-			->add('NomG',    'text')
+			->add('NomG',    'text');
 		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
 		 
 		  // À partir du formBuilder, on génère le formulaire
@@ -278,8 +275,6 @@ class SiteController extends Controller
 			'form' => $form->createView(),
 		  ));
 	}
-  }
-}
 
 	else if ($type=="quotagroupe") {
 		  // On crée un objet quotagroupe
