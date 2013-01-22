@@ -149,7 +149,7 @@ class SiteController extends Controller
 			'form' => $form->createView(),
 		  ));
 	}
-	else if ($type=="typeEn") {
+	else if ($type=="Groupe") {
 		  // On crée un objet Etudiant
 		  $typeEn = new TypeEnseignant();
 		 
@@ -192,6 +192,95 @@ class SiteController extends Controller
 			'form' => $form->createView(),
 		  ));
 	}
+	
+	else if ($type=="groupe") {
+		  // On crée un objet groupe
+		  $groupe = new Groupe();
+		 
+		  // On crée le FormBuilder grâce à la méthode du contrôleur
+		  $formBuilder = $this->createFormBuilder($groupe);
+		 
+		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
+		  $formBuilder
+			->add('NomG',    'text');
+
+		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
+		 
+		  // À partir du formBuilder, on génère le formulaire
+		  $form = $formBuilder->getForm();
+		  
+		      // On récupère la requête
+			$request = $this->get('request');
+		 
+			// On vérifie qu'elle est de type POST
+			if ($request->getMethod() == 'POST') {
+			  // On fait le lien Requête <-> Formulaire
+			  $form->bind($request);
+		 
+			  // On vérifie que les valeurs rentrées sont correctes
+			  // (Nous verrons la validation des objets en détail plus bas dans ce chapitre)
+			  if ($form->isValid()) {
+				// On l'enregistre notre objet $article dans la base de données
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($groupe);
+				$em->flush();
+				echo "<script>alert(\"L'étudiant est ajouté\")</script>"; 
+				// On redirige vers la page de visualisation de l'article nouvellement créé
+				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
+			  }
+			}
+		 
+		  // On passe la méthode createView() du formulaire à la vue afin qu'elle puisse afficher le formulaire toute seule
+		  return $this->render('GadiSiteBundle:Site:ajouterGroupe.html.twig', array(
+			'form' => $form->createView(),
+		  ));
+	}
+	
+	
+	else if ($type=="typeEn") {
+		  // On crée un objet Etudiant
+		  $typeEn = new TypeEnseignant();
+		 
+		  // On crée le FormBuilder grâce à la méthode du contrôleur
+		  $formBuilder = $this->createFormBuilder($typeEn);
+		 
+		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
+		  $formBuilder
+			->add('NomG',    'text')
+		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
+		 
+		  // À partir du formBuilder, on génère le formulaire
+		  $form = $formBuilder->getForm();
+		  
+		      // On récupère la requête
+			$request = $this->get('request');
+		 
+			// On vérifie qu'elle est de type POST
+			if ($request->getMethod() == 'POST') {
+			  // On fait le lien Requête <-> Formulaire
+			  $form->bind($request);
+		 
+			  // On vérifie que les valeurs rentrées sont correctes
+			  // (Nous verrons la validation des objets en détail plus bas dans ce chapitre)
+			  if ($form->isValid()) {
+				// On l'enregistre notre objet $article dans la base de données
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($typeEn);
+				$em->flush();
+		 
+				// On redirige vers la page de visualisation de l'article nouvellement créé
+				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
+			  }
+			}
+		 
+		  // On passe la méthode createView() du formulaire à la vue afin qu'elle puisse afficher le formulaire toute seule
+		  return $this->render('GadiSiteBundle:Site:ajouterGroupe.html.twig', array(
+			'form' => $form->createView(),
+		  ));
+	}
+  }
+}
+
 	else if ($type=="quotagroupe") {
 		  // On crée un objet quotagroupe
 		  $quotagroupe = new QuotaGroupe();
