@@ -250,9 +250,9 @@ class SiteController extends Controller
 		 
 		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
 		  $formBuilder
-			->add('heuresemaine',    'integer');
-			->add('Semestre', 'entity', array('class' => 'GadiSiteBundle:Semestre', 'property' => 'libelle'));
-			->add('Groupe', 'entity', array('class' => 'GadiSiteBundle:Groupe', 'property' => 'numg'));
+			->add('heuresemaine',    'integer')
+			->add('Semestre', 'entity', array('class' => 'GadiSiteBundle:Semestre', 'property' => 'libelle'))
+			->add('Groupe', 'entity', array('class' => 'GadiSiteBundle:Groupe', 'property' => 'numg'))
 			->add('Semaine', 'entity', array('class' => 'GadiSiteBundle:Semaine', 'property' => 'numero'));
 		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
 		 
