@@ -315,15 +315,15 @@ class SiteController extends Controller
 				$em->flush();
 				$nbsemaine = $semestre->nombreSemaines();
 				$date = $semestre->getDateDebut();
+				$date2 = $date;
 				
-				for ($i = 1; $i <=$nbsemaine+1; $i++) {
-					$semaine = new Semaine($semestre, $i, $date,  $date);					
-					$date->add(new \DateInterval('P06D'));
+				for ($i = 1; $i <=$nbsemaine+1; $i++) {	
+					$semaine = new Semaine($semestre, $i, $date,  $date2);
 					$semaine->setDateFin($date);
 					$sm = $this->getDoctrine()->getManager();
 					$sm->persist($semaine);
 					$sm->flush();
-					$date->add(new \DateInterval('P01D'));
+					$date->modify('+7 day');
 				}
 				echo "<script>alert(\"Le semestre a été ajouté avec ses semaines\")</script>";
 				}
