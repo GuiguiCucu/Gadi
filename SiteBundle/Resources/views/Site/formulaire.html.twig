@@ -26,7 +26,18 @@
 		  <!-- Génération de l'input. -->
 		  {{ form_widget(form.prenomEn) }}
 		</div>
+		
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.typeEnseignant, "Type enseignant") }}
 		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.typeEnseignant) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.typeEnseignant) }}
+		</div>
+		
 		<!-- Génération des champs pas encore écrits.
 		   Dans cet exemple, ça serait « date », « auteur » et « publication »,
 		   mais aussi le champ CSRF (géré automatiquement par Symfony !)

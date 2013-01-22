@@ -25,7 +25,7 @@ class Enseignant
    * @ORM\ManyToOne(targetEntity="Gadi\SiteBundle\Entity\TypeEnseignant")
    * @ORM\JoinColumn(nullable=false)
    */
-   private $TypeEnseignant;	
+   private $typeEnseignant;	
     /**
      * @var string
      *

@@ -71,7 +71,9 @@ class SiteController extends Controller
 		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
 		  $formBuilder
 			->add('nomEn',    'text')
-			->add('prenomEn', 'text');
+			->add('prenomEn', 'text')
+			->add('typeEnseignant', 'choice', array("choices" => $this->getTypeEnseignants()))
+			;
 		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
 		 
 		  // À partir du formBuilder, on génère le formulaire
@@ -229,5 +231,15 @@ class SiteController extends Controller
 			'form' => $form->createView(),
 		  ));
 	}
+  }
+  // permet de retourner dans un tableau tous les intitulés des types enseignants, utilisée dans ajouterEnseignant
+  public function getTypeEnseignants()
+    {
+		$array_return = array();
+        $array_typeEnseignants = $this->getDoctrine()->getRepository('GadiSiteBundle:TypeEnseignant')->findAll();
+		foreach ($array_typeEnseignants as $typeEnseignant) {
+			$array_return[$typeEnseignant->getId()] = $typeEnseignant->getIntitule();
+		}
+		return $array_return;
   }
 }
