@@ -38,16 +38,72 @@ class Module
     /**
      * @var integer
      *
-     * @ORM\Column(name="nombreHeures", type="integer")
+     * @ORM\Column(name="heureCM", type="integer")
      */
-    private $nombreHeures;
+    private $heureCM;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="typeSalleCM", type="string", length=255)
+     */
+    private $typeSalleCM;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="coefficient", type="integer")
+     * @ORM\Column(name="nbGroupes", type="integer")
      */
-    private $coefficient;
+    private $nbGroupes;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="heureTD", type="integer")
+     */
+    private $heureTD;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="typeSalleTD", type="string", length=255)
+     */
+    private $typeSalleTD;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbGroupesTD", type="integer")
+     */
+    private $nbGroupesTD;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="heureTP", type="integer")
+     */
+    private $heureTP;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="typeSalleTP", type="string", length=255)
+     */
+    private $typeSalleTP;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbGroupesTP", type="integer")
+     */
+    private $nbGroupesTP;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="coefGlobal", type="integer")
+     */
+    private $coefGlobal;
 	
 	/**
    * @ORM\ManyToOne(targetEntity="Gadi\SiteBundle\Entity\Enseignant")
@@ -119,49 +175,233 @@ class Module
     }
 
     /**
-     * Set nombreHeures
+     * Set heureCM
      *
-     * @param integer $nombreHeures
+     * @param integer $heureCM
      * @return Module
      */
-    public function setNombreHeures($nombreHeures)
+    public function setHeureCM($heureCM)
     {
-        $this->nombreHeures = $nombreHeures;
+        $this->heureCM = $heureCM;
     
         return $this;
     }
 
     /**
-     * Get nombreHeures
+     * Get heureCM
      *
      * @return integer 
      */
-    public function getNombreHeures()
+    public function getHeureCM()
     {
-        return $this->nombreHeures;
+        return $this->heureCM;
     }
 
     /**
-     * Set coefficient
+     * Set typeSalleCM
      *
-     * @param integer $coefficient
+     * @param string $typeSalleCM
      * @return Module
      */
-    public function setCoefficient($coefficient)
+    public function setTypeSalleCM($typeSalleCM)
     {
-        $this->coefficient = $coefficient;
+        $this->typeSalleCM = $typeSalleCM;
     
         return $this;
     }
 
     /**
-     * Get coefficient
+     * Get typeSalleCM
+     *
+     * @return string 
+     */
+    public function getTypeSalleCM()
+    {
+        return $this->typeSalleCM;
+    }
+
+    /**
+     * Set nbGroupes
+     *
+     * @param integer $nbGroupes
+     * @return Module
+     */
+    public function setNbGroupes($nbGroupes)
+    {
+        $this->nbGroupes = $nbGroupes;
+    
+        return $this;
+    }
+
+    /**
+     * Get nbGroupes
      *
      * @return integer 
      */
-    public function getCoefficient()
+    public function getNbGroupes()
     {
-        return $this->coefficient;
+        return $this->nbGroupes;
+    }
+
+    /**
+     * Set heureTD
+     *
+     * @param integer $heureTD
+     * @return Module
+     */
+    public function setHeureTD($heureTD)
+    {
+        $this->heureTD = $heureTD;
+    
+        return $this;
+    }
+
+    /**
+     * Get heureTD
+     *
+     * @return integer 
+     */
+    public function getHeureTD()
+    {
+        return $this->heureTD;
+    }
+
+    /**
+     * Set typeSalleTD
+     *
+     * @param string $typeSalleTD
+     * @return Module
+     */
+    public function setTypeSalleTD($typeSalleTD)
+    {
+        $this->typeSalleTD = $typeSalleTD;
+    
+        return $this;
+    }
+
+    /**
+     * Get typeSalleTD
+     *
+     * @return string 
+     */
+    public function getTypeSalleTD()
+    {
+        return $this->typeSalleTD;
+    }
+
+    /**
+     * Set nbGroupesTD
+     *
+     * @param integer $nbGroupesTD
+     * @return Module
+     */
+    public function setNbGroupesTD($nbGroupesTD)
+    {
+        $this->nbGroupesTD = $nbGroupesTD;
+    
+        return $this;
+    }
+
+    /**
+     * Get nbGroupesTD
+     *
+     * @return integer 
+     */
+    public function getNbGroupesTD()
+    {
+        return $this->nbGroupesTD;
+    }
+
+    /**
+     * Set heureTP
+     *
+     * @param integer $heureTP
+     * @return Module
+     */
+    public function setHeureTP($heureTP)
+    {
+        $this->heureTP = $heureTP;
+    
+        return $this;
+    }
+
+    /**
+     * Get heureTP
+     *
+     * @return integer 
+     */
+    public function getHeureTP()
+    {
+        return $this->heureTP;
+    }
+
+    /**
+     * Set typeSalleTP
+     *
+     * @param string $typeSalleTP
+     * @return Module
+     */
+    public function setTypeSalleTP($typeSalleTP)
+    {
+        $this->typeSalleTP = $typeSalleTP;
+    
+        return $this;
+    }
+
+    /**
+     * Get typeSalleTP
+     *
+     * @return string 
+     */
+    public function getTypeSalleTP()
+    {
+        return $this->typeSalleTP;
+    }
+
+    /**
+     * Set nbGroupesTP
+     *
+     * @param integer $nbGroupesTP
+     * @return Module
+     */
+    public function setNbGroupesTP($nbGroupesTP)
+    {
+        $this->nbGroupesTP = $nbGroupesTP;
+    
+        return $this;
+    }
+
+    /**
+     * Get nbGroupesTP
+     *
+     * @return integer 
+     */
+    public function getNbGroupesTP()
+    {
+        return $this->nbGroupesTP;
+    }
+
+    /**
+     * Set coefGlobal
+     *
+     * @param integer $coefGlobal
+     * @return Module
+     */
+    public function setCoefGlobal($coefGlobal)
+    {
+        $this->coefGlobal = $coefGlobal;
+    
+        return $this;
+    }
+
+    /**
+     * Get coefGlobal
+     *
+     * @return integer 
+     */
+    public function getCoefGlobal()
+    {
+        return $this->coefGlobal;
     }
 	
     /**
