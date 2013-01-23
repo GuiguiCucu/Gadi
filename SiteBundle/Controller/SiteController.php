@@ -17,6 +17,7 @@ use Gadi\SiteBundle\Entity\Semaine;
 use Gadi\SiteBundle\Entity\QuotaEnseignant;
 use Gadi\SiteBundle\Entity\Cours;
 use Gadi\SiteBundle\Entity\Module;
+use JMS\SecurityExtraBundle\Annotation\Secure;
  
 class SiteController extends Controller
 {
@@ -123,6 +124,9 @@ class SiteController extends Controller
 	}
   }
   
+  /**
+     * @Secure(roles="ROLE_SUPER_ADMIN")
+    */
   public function ajouterAction($type)
   {
 	if($type=="enseignant") {
