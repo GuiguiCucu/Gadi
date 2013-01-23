@@ -67,7 +67,27 @@ class SiteController extends Controller
     public function voirAction($type)
   {
 	if($type=="cours") {
+		$formBuilder = $this->createFormBuilder();
+		$formBuilder
+			->add('idCours', 'entity', array('class' => 'GadiSiteBundle:Cours', 'property' => 'id'));
 	
+		$form = $formBuilder->getForm();
+		
+		$request = $this->get('request');
+		
+		if ($request->getMethod() == 'POST') {
+			  // On fait le lien Requête <-> Formulaire
+			  $form->bind($request);
+			  // On vérifie que les valeurs rentrées sont correctes			 
+			  if ($form->isValid()) {
+				$cours = $form->get('idCours');
+				return $this->redirect($this->generateUrl('gadisite_voir_cours', array('id' => $cours->getId())));
+			  }
+		}
+		
+			return $this->render('GadiSiteBundle:Site:consultCours.html.twig', array(
+			'form' => $form->createView(),
+		  ));
 	}
 	elseif($type=="quotagroupe") {
 		  // On crée un objet quotagroupe
