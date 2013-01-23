@@ -78,28 +78,14 @@ class SiteController extends Controller
     public function voirAction($type)
   {
 	if($type=="cours") {
-		$formBuilder = $this->createFormBuilder();
-		$formBuilder
-			->add('idCours', 'entity', array('class' => 'GadiSiteBundle:Cours', 'property' => 'id'));
-	
-		$form = $formBuilder->getForm();
+
+		$array_cours = $this->getDoctrine()->getRepository('GadiSiteBundle:Cours')->findAll();
+		foreach ($array_cours as $cours) {
 		
-		$request = $this->get('request');
-		
-		if ($request->getMethod() == 'POST') {
-			  // On fait le lien Requête <-> Formulaire
-			  $form->bind($request);
-			  // On vérifie que les valeurs rentrées sont correctes			 
-			  if ($form->isValid()) {
-				$cours = $form->get('idCours');
-				$id = $cours->getId();
-				return $this->redirect($this->generateUrl('gadisite_voir_cours', array('id' => $id )));
-			  }
+			$this->generateUrl('gadisite_voir_cours', array('id' => $cours->getId() )));
 		}
 		
-			return $this->render('GadiSiteBundle:Site:consultCours.html.twig', array(
-			'form' => $form->createView(),
-		  ));
+		
 	}
 	elseif($type=="quotagroupe") {
 		  // On crée un objet quotagroupe
@@ -162,10 +148,6 @@ class SiteController extends Controller
 			// On vérifie qu'elle est de type POST
 			if ($request->getMethod() == 'POST') {
 			  // On fait le lien Requête <-> Formulaire
-			  
-			 // $intitule = $request->get('typeEnseignant');
-			 // $typeEns = $this->getDoctrine()->getRepository('GadiSiteBundle:TypeEnseignant')->find(1);
-			 // $request->request->set('typeEnseignant', $typeEns);
 			  
 			  $form->bind($request);
 		 
