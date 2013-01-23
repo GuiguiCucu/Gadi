@@ -42,27 +42,15 @@ class SiteController extends Controller
     ));
    }
   
-  public function voirAction($id)
+  public function voirCoursAction($id)
   {
-    // $id vaut 5 si l'on a appelé l'URL /site/article/5
+    // $id vaut 5 si l'on a appelé l'URL /site/cours/5
          
-    // Ici, on récupèrera depuis la base de données l'article correspondant à l'id $id
-    // Puis on passera l'article à la vue pour qu'elle puisse l'afficher
+    // Ici, on récupèrera depuis la base de données l'cours correspondant à l'id $id
+	
+	$cours = $this->getDoctrine()->getRepository('GadiSiteBundle:Cours')->find($id);
  
-    // On récupère la requête
-    $request = $this->get('request');
- 
-    // On récupère notre paramètre tag
-    $tag = $request->query->get('tag');
- 
-    return new Response("Affichage de l'article d'id : ".$id.", avec le tag : ".$tag);
-  }
-  
-   // On récupère tous les paramètres en argument de la méthode
-  public function voirSlugAction($slug, $annee, $format)
-  {
-    // Ici le contenu de la méthode
-    return new Response("On pourrait afficher l'article correspondant au slug '".$slug."', créé en ".$annee." et au format ".$format.".");
+    return $this->render('GadiSiteBundle:Site:voirCours.html.twig', array('cours' => $cours));
   }
   
   public function ajouterAction($type)
@@ -457,7 +445,7 @@ else if ($type=="quotagroupes") {
 				$em->flush();
 				echo "<script>alert(\"Le cours a été ajouté\")</script>";
 				// On redirige vers la page de visualisation de l'article nouvellement créé
-				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
+				return $this->redirect($this->generateUrl('gadisite_voir_cours', array('id' => $cours->getId())));
 			  }
 			}
 		 
