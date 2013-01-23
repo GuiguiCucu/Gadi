@@ -1,0 +1,33 @@
+<h3>Formulaire de consultation du QuotaGroupe</h3>
+ 
+<form method="post" {{ form_enctype(form) }}>
+
+		
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.groupe, "groupes") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.groupe) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.groupe) }}
+		</div>
+		
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.semaine, "semaines") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.semaine) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.semaine) }}
+		</div>
+		
+
+		
+        {{ form_widget(form) }}
+        <input type="submit" class="btn btn-primary" />
+    </form>
+</div>

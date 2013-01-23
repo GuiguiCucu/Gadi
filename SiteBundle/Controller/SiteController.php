@@ -241,7 +241,48 @@ class SiteController extends Controller
 		  ));
 	}
 
-
+else if ($type=="quotagroupes") {
+		  // On crée un objet quotagroupe
+		  $quotagroupe = new QuotaGroupe(); //a verifier si utile
+		 
+		  // On crée le FormBuilder grâce à la méthode du contrôleur
+		  $formBuilder = $this->createFormBuilder($quotagroupe);
+		 
+		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
+		  $formBuilder
+			->add('heuresemaine',  'integer'   )
+			->add('groupe', 'entity', array('class' => 'GadiSiteBundle:Groupe', 'property' => 'nomg'))
+			->add('semaine', 'entity', array('class' => 'GadiSiteBundle:Semaine', 'property' => 'numero'));
+		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
+		
+		  // À partir du formBuilder, on génère le formulaire
+		  $form = $formBuilder->getForm();
+		  
+		      // On récupère la requête
+			$request = $this->get('request');
+		 
+			// On vérifie qu'elle est de type POST
+			if ($request->getMethod() == 'POST') {
+			  // On fait le lien Requête <-> Formulaire
+			  $form->bind($request);
+		  $heuresemaine = $quotagroupe->getheureSemaine();
+			  // On vérifie que les valeurs rentrées sont correctes			 
+			  if ($form->isValid()) {
+				// On l'enregistre notre objet $article dans la base de données
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($quotagroupe);
+				$em->flush();
+				echo "<script>alert(\"Le quota du groupe est ajouté\")</script>";
+				// On redirige vers la page de visualisation de l'article nouvellement créé
+				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
+			  }
+			}
+		 
+		  // On passe la méthode createView() du formulaire à la vue afin qu'elle puisse afficher le formulaire toute seule
+		  return $this->render('GadiSiteBundle:Site:consultQuotaGroupe.html.twig', array(
+			'form' => $form->createView(),
+		  ));
+	}
 	else if ($type=="quotagroupe") {
 		  // On crée un objet quotagroupe
 		  $quotagroupe = new QuotaGroupe();
