@@ -3,10 +3,40 @@
 <script type="text/javascript" src="{{ asset('js/jquery.ui.datepicker-fr.js') }}"></script>
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/ui-lightness/jquery-ui.css" type="text/css" media="all"/>
 
-<h3>Formulaire du semestre</h3>
+<h3>Formulaire d'ajout du semestre</h3>
  
 <div class="well">
     <form method="post" {{ form_enctype(form) }}>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.libelle, "Libellé (S1, S2, etc)") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.libelle) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.libelle) }}
+		</div>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.dateDebut, "Date de début") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.dateDebut) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.dateDebut) }}
+		</div>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.dateFin, "Date de fin") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.dateFin) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.dateFin) }}
+		</div>
         {{ form_widget(form) }}
         <input type="submit" class="btn btn-primary" />
     </form>

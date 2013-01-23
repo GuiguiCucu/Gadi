@@ -2,6 +2,16 @@
  
 <div class="well">
     <form method="post" {{ form_enctype(form) }}>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.nomG, "Nom du groupe (A1, A2, B1, etc)") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.nomG) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.nomG) }}
+		</div>
         {{ form_widget(form) }}
         <input type="submit" class="btn btn-primary" />
     </form>

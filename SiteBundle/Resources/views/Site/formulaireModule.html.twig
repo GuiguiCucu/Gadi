@@ -2,6 +2,126 @@
  
 <div class="well">
     <form method="post" {{ form_enctype(form) }}>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.ue, "Unité d'Enseignement") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.ue) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.ue) }}
+		</div>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.libelle, "Nom du module") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.libelle) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.libelle) }}
+		</div>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.heurecm, "Nombre d'heures nécessaires pour un CM") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.heurecm) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.heurecm)}}
+		</div>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.typesallecm, "Type de salle nécessaire pour un CM") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.typesallecm) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.typesallecm)}}
+		</div>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.nbgroupes, "Nombre de groupes assistant à un CM") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.nbgroupes) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.nbgroupes)}}
+		</div>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.heuretd, "Nombre d'heures nécessaires pour un TD") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.heuretd) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.heuretd)}}
+		</div>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.typesalletd, "Type de salle nécessaire pour un TD") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.typesalletd) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.typesalletd)}}
+		</div>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.nbgroupestd, "Nombre de groupes assistant à un TD") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.nbgroupestd) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.nbgroupestd)}}
+		</div>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.heuretp, "Nombre d'heures nécessaires pour un TP") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.heuretp) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.heuretp)}}
+		</div>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.typesalletp, "Type de salle nécessaire pour un TP") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.typesalletp) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.typesalletp)}}
+		</div>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.nbgroupestp, "Nombre de groupes assistant à un TP") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.nbgroupestp) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.nbgroupestp)}}
+		</div>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.coefglobal, "Coefficient") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.coefglobal) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.coefglobal)}}
+		</div>
         {{ form_widget(form) }}
         <input type="submit" class="btn btn-primary" />
     </form>

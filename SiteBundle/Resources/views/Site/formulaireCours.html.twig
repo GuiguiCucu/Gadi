@@ -2,6 +2,26 @@
  
 <div class="well">
     <form method="post" {{ form_enctype(form) }}>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.type, "Type (CM, TD, TP)") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.type) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.type) }}
+		</div>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.typesalle, "Type de salle (banale, avec vidéo, salle info, etc)") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.typesalle) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.typesalle) }}
+		</div>
         {{ form_widget(form) }}
         <input type="submit" class="btn btn-primary" />
     </form>

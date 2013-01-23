@@ -2,6 +2,36 @@
  
 <div class="well">
     <form method="post" {{ form_enctype(form) }}>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.intitule, "intitulé (Doctorant, chercheur, etc)") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.intitule) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.intitule) }}
+		</div>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.heureMaxSem, "Nombre d'heure maximum par semaine") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.heureMaxSem) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.heureMaxSem) }}
+		</div>
+		<div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.heureMaxAnn, "Nombre d'heure maximum par an") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.heureMaxAnn) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.heureMaxAnn) }}
+		</div>
         {{ form_widget(form) }}
         <input type="submit" class="btn btn-primary" />
     </form>
