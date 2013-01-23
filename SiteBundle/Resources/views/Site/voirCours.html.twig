@@ -9,7 +9,12 @@
 {% block gadisite_body %}
  
   <h2>Cours numero {{ cours.id }}</h2>
-  <p>Type:  {{ cours.type }}, type de salle: {{ cours.typeSalle }}, d'une durée de {{ cours.duree }} à la date</p>
+  <p>
+  {{ cours.type }} <br/>
+  {{ cours.typeSalle }} <br/>
+  {{ cours.duree }} heures <br/>
+  A lieu le {{ cours.date |date("d-m-Y") }}
+  </p>
  
  
   <p>
