@@ -251,7 +251,7 @@ else if ($type=="quotagroupes") {
 		 
 		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
 		  $formBuilder
-			->add('heuresemaine',  'integer'   )
+			->add('heuresemaine',  'integer',array('read_only' =>true))
 			->add('groupe', 'entity', array('class' => 'GadiSiteBundle:Groupe', 'property' => 'nomg'))
 			->add('semaine', 'entity', array('class' => 'GadiSiteBundle:Semaine', 'property' => 'numero'));
 		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
