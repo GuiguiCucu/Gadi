@@ -81,7 +81,8 @@ class SiteController extends Controller
 			  // On vérifie que les valeurs rentrées sont correctes			 
 			  if ($form->isValid()) {
 				$cours = $form->get('idCours');
-				return $this->redirect($this->generateUrl('gadisite_voir_cours', array('id' => $cours->getId())));
+				$id = $cours->getId();
+				return $this->redirect($this->generateUrl('gadisite_voir_cours', array('id' => $id )));
 			  }
 		}
 		

@@ -18,7 +18,7 @@ gadisite_voir_cours:
     requirements:
         id:  \d+
 
-gadisite_voir_cours:
+gadisite_voir_enseignant:
     pattern:   /enseignant/{id}
     defaults:  { _controller: GadiSiteBundle:Site:voirEnseignant }	
     requirements:
