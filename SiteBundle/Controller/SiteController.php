@@ -508,7 +508,7 @@ else if ($type=="quotagroupes") {
 			  if ($form->isValid()) {
 				// On l'enregistre notre objet $article dans la base de données
 				$em = $this->getDoctrine()->getManager();
-				$em->persist($cours);
+				$em->persist($module);
 				$em->flush();
 				echo "<script>alert(\"Le module a été ajouté\")</script>";
 				// On redirige vers la page de visualisation de l'article nouvellement créé
