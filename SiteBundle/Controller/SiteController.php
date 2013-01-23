@@ -16,6 +16,7 @@ use Gadi\SiteBundle\Entity\Semestre;
 use Gadi\SiteBundle\Entity\Semaine;
 use Gadi\SiteBundle\Entity\QuotaEnseignant;
 use Gadi\SiteBundle\Entity\Cours;
+use Gadi\SiteBundle\Entity\Module;
  
 class SiteController extends Controller
 {
@@ -462,6 +463,61 @@ else if ($type=="quotagroupes") {
 		 
 		  // On passe la méthode createView() du formulaire à la vue afin qu'elle puisse afficher le formulaire toute seule
 		  return $this->render('GadiSiteBundle:Site:ajouterCours.html.twig', array(
+			'form' => $form->createView(),
+		  ));
+	}
+	else if ($type=="module") {
+		  // On crée un objet quotagroupe
+		  $module = new Module();
+		 
+		  // On crée le FormBuilder grâce à la méthode du contrôleur
+		  $formBuilder = $this->createFormBuilder($module);
+		 
+		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
+		  $formBuilder
+			->add('ue',    'text')
+			->add('libelle', 'text')
+			->add('heurecm', 'integer')
+			->add('typesallecm', 'text')
+			->add('nbgroupes', 'integer')
+			->add('heuretd', 'integer')
+			->add('typesalletd', 'text')
+			->add('nbgroupestd', 'integer')
+			->add('heuretp', 'integer')
+			->add('typesalletp', 'text')
+			->add('nbgroupestp', 'integer')
+			->add('coefglobal', 'integer')
+			->add('enseignant', 'entity', array('class' => 'GadiSiteBundle:Enseignant', 'property' => 'nomen'))
+			->add('semestre', 'entity', array('class' => 'GadiSiteBundle:Semestre', 'property' => 'libelle'))	
+			;
+		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
+		 
+		  // À partir du formBuilder, on génère le formulaire
+		  $form = $formBuilder->getForm();
+		  
+		      // On récupère la requête
+			$request = $this->get('request');
+		 
+			// On vérifie qu'elle est de type POST
+			if ($request->getMethod() == 'POST') {
+			  // On fait le lien Requête <-> Formulaire
+			  $form->bind($request);
+		 
+			  // On vérifie que les valeurs rentrées sont correctes
+			 
+			  if ($form->isValid()) {
+				// On l'enregistre notre objet $article dans la base de données
+				$em = $this->getDoctrine()->getManager();
+				$em->persist($cours);
+				$em->flush();
+				echo "<script>alert(\"Le module a été ajouté\")</script>";
+				// On redirige vers la page de visualisation de l'article nouvellement créé
+				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
+			  }
+			}
+		 
+		  // On passe la méthode createView() du formulaire à la vue afin qu'elle puisse afficher le formulaire toute seule
+		  return $this->render('GadiSiteBundle:Site:ajouterModule.html.twig', array(
 			'form' => $form->createView(),
 		  ));
 	}
