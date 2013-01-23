@@ -53,6 +53,17 @@ class SiteController extends Controller
     return $this->render('GadiSiteBundle:Site:voirCours.html.twig', array('cours' => $cours));
   }
   
+  public function voirEnseignantAction($id)
+  {
+    // $id vaut 5 si l'on a appelé l'URL /site/cours/5
+         
+    // Ici, on récupèrera depuis la base de données l'cours correspondant à l'id $id
+	
+	$enseignant = $this->getDoctrine()->getRepository('GadiSiteBundle:Enseignant')->find($id);
+ 
+    return $this->render('GadiSiteBundle:Site:voirEnseignant.html.twig', array('enseignant' => $enseignant));
+  }
+  
     public function voirAction($type)
   {
 	if($type=="cours") {

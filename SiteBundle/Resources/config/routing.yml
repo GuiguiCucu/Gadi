@@ -16,6 +16,12 @@ gadisite_voir_cours:
     pattern:   /cours/{id}
     defaults:  { _controller: GadiSiteBundle:Site:voirCours }	
     requirements:
+        id:  \d+
+
+gadisite_voir_cours:
+    pattern:   /enseignant/{id}
+    defaults:  { _controller: GadiSiteBundle:Site:voirEnseignant }	
+    requirements:
         id:  \d+	
      
 gadisite_ajouter:

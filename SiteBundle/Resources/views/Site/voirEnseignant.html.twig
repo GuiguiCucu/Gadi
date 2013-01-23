@@ -1,0 +1,23 @@
+{# src/Gadi/SiteBundle/Resources/views/Site/voir.html.twig #}
+ 
+{% extends "GadiSiteBundle::layout.html.twig" %}
+ 
+{% block title %}
+  Consultation d'un enseignant - {{ parent() }}
+{% endblock %}
+ 
+{% block gadisite_body %}
+ 
+  <h2>Enseignant numero {{ enseignant.id }}</h2>
+  <p>
+  {{ enseignant.prenomen }} {{ enseignant.nomen }}, {{enseignant.typeenseignant.intitule}}.
+  </p>
+ 
+ 
+  <p>
+    <a href="{{ path('gadisite_accueil') }}" class="btn">
+      <i class="icon-chevron-left"></i>
+      Retour à l'accueil
+    </a>
+ 
+{% endblock %}
