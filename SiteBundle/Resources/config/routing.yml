@@ -6,11 +6,17 @@ gadisite_accueil:
     requirements:
         page:  \d*
      
+gadisite_voir:
+    pattern:   /voir/{type}
+    defaults:  { _controller: GadiSiteBundle:Site:voir }	
+    requirements:
+        format: cours|quotagroupe
+
 gadisite_voir_cours:
     pattern:   /cours/{id}
     defaults:  { _controller: GadiSiteBundle:Site:voirCours }	
     requirements:
-        id:  \d+
+        id:  \d+	
      
 gadisite_ajouter:
     pattern:   /ajouter/{type}
