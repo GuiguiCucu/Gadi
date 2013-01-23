@@ -82,7 +82,7 @@ class SiteController extends Controller
 		$array_cours = $this->getDoctrine()->getRepository('GadiSiteBundle:Cours')->findAll();
 		foreach ($array_cours as $cours) {
 		
-			$this->generateUrl('gadisite_voir_cours', array('id' => $cours->getId() )));
+			$this->generateUrl('gadisite_voir_cours', array('id' => $cours->getId() ));
 		}
 		
 		
