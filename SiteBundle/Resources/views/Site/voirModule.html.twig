@@ -1,0 +1,32 @@
+{# src/Gadi/SiteBundle/Resources/views/Site/voir.html.twig #}
+ 
+{% extends "GadiSiteBundle::layout.html.twig" %}
+ 
+{% block title %}
+  Consultation d'un module - {{ parent() }}
+{% endblock %}
+ 
+{% block gadisite_body %}
+ 
+  <h2>Module numero {{ module.id }}</h2>
+  <p>
+  {{ module.ue }} - {{ module.libelle }} <br/><br/>
+  {{ module.heurecm }} heures de CM dans une salle de type {{ module.typesallecm }}<br/>
+  {{ module.nbgroupes }} groupes par CM<br/><br/>
+  {{ module.heuretd }} heures de TD dans une salle de type {{ module.typesalletd }}<br/>
+  {{ module.nbgroupestd }} groupes par TD<br/><br/>
+  {{ module.heuretp }} heures de TP dans une salle de type {{ module.typesalletp }}<br/>
+  {{ module.nbgroupestp}} groupe par TP<br/><br/>
+  coefficient : {{ module.coefglobal }} <br/>
+  responsable de module {{ module.enseignant.prenomen }} {{ module.enseignant.nomen }} <br/>
+  semestre : {{ module.semestre.libelle }}
+  </p>
+ 
+ 
+  <p>
+    <a href="{{ path('gadisite_accueil') }}" class="btn">
+      <i class="icon-chevron-left"></i>
+      Retour à l'accueil
+    </a>
+ 
+{% endblock %}
