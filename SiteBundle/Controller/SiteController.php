@@ -1,8 +1,5 @@
 <?php
  
-// src/Gadi/SiteBundle/Controller/SiteController.php
-// src/Gadi/SiteBundle/Entity/Enseignant.php
- 
 namespace Gadi\SiteBundle\Controller;
  
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -37,7 +34,7 @@ class SiteController extends Controller
   {
     // $id vaut 5 si l'on a appelé l'URL /site/cours/5
          
-    // Ici, on récupèrera depuis la base de données l'cours correspondant à l'id $id
+    // Ici, on récupèrera depuis la base de données du cours correspondant à l'id $id
 	
 	$cours = $this->getDoctrine()->getRepository('GadiSiteBundle:Cours')->find($id);
  
@@ -46,9 +43,9 @@ class SiteController extends Controller
   
   public function voirEnseignantAction($id)
   {
-    // $id vaut 5 si l'on a appelé l'URL /site/cours/5
+    // $id vaut 5 si l'on a appelé l'URL /site/enseignant/5
          
-    // Ici, on récupèrera depuis la base de données l'cours correspondant à l'id $id
+    // Ici, on récupèrera depuis la base de données de l'enseignant correspondant à l'id $id
 	
 	$enseignant = $this->getDoctrine()->getRepository('GadiSiteBundle:Enseignant')->find($id);
  
@@ -57,9 +54,9 @@ class SiteController extends Controller
   
   public function voirModuleAction($id)
   {
-    // $id vaut 5 si l'on a appelé l'URL /site/cours/5
+    // $id vaut 5 si l'on a appelé l'URL /site/module/5
          
-    // Ici, on récupèrera depuis la base de données l'cours correspondant à l'id $id
+    // Ici, on récupèrera depuis la base de données du module correspondant à l'id $id
 	
 	$module = $this->getDoctrine()->getRepository('GadiSiteBundle:Module')->find($id);
  
@@ -71,9 +68,9 @@ class SiteController extends Controller
  
 	  public function voirQuotaGroupeAction($id)
   {
-    // $id vaut 5 si l'on a appelé l'URL /site/cours/5
+    // $id vaut 5 si l'on a appelé l'URL /site/quotagroupe/5
          
-    // Ici, on récupèrera depuis la base de données l'cours correspondant à l'id $id
+    // Ici, on récupèrera depuis la base de données de quotagroupe correspondant à l'id $id
 	
 	$quotagroupe = $this->getDoctrine()->getRepository('GadiSiteBundle:QuotaGroupe')->find($id);
  
@@ -139,7 +136,6 @@ class SiteController extends Controller
 			->add('nomEn',    'text')
 			->add('prenomEn', 'text')
 			->add('typeEnseignant', 'entity', array('class' => 'GadiSiteBundle:TypeEnseignant', 'property' => 'intitule'));
-		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
 		 
 		  // À partir du formBuilder, on génère le formulaire
 		  $form = $formBuilder->getForm();
@@ -156,13 +152,11 @@ class SiteController extends Controller
 			  // On vérifie que les valeurs rentrées sont correctes
 			  // (Nous verrons la validation des objets en détail plus bas dans ce chapitre)
 			  if ($form->isValid()) {
-				// On l'enregistre notre objet $article dans la base de données
+				// On l'enregistre notre objet $enseignant dans la base de données
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($enseignant);
 				$em->flush();
 				echo "<script>alert(\"L'enseignant est ajouté\")</script>"; 
-				// On redirige vers la page de visualisation de l'article nouvellement créé
-				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
 			  }
 			}
 		 
@@ -189,7 +183,6 @@ class SiteController extends Controller
 			->add('nom',    'text')
 			->add('prenom', 'text')
 			->add('groupe', 'entity', array('class' => 'GadiSiteBundle:Groupe', 'property' => 'nomg'));
-		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
 		 
 		  // À partir du formBuilder, on génère le formulaire
 		  $form = $formBuilder->getForm();
@@ -205,13 +198,11 @@ class SiteController extends Controller
 			  // On vérifie que les valeurs rentrées sont correctes
 			  // (Nous verrons la validation des objets en détail plus bas dans ce chapitre)
 			  if ($form->isValid()) {
-				// On l'enregistre notre objet $article dans la base de données
+				// On l'enregistre notre objet $etudiant dans la base de données
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($etudiant);
 				$em->flush();
 				echo "<script>alert(\"L'étudiant est ajouté\")</script>"; 
-				// On redirige vers la page de visualisation de l'article nouvellement créé
-				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
 			  }
 			}
 		 
@@ -227,7 +218,7 @@ class SiteController extends Controller
             // Sinon on déclenche une exception "Accès Interdit"
             throw new AccessDeniedHttpException('Accès limité aux super admin');
         }
-		  // On crée un objet Etudiant
+		  // On crée un objet TypeEnseignant
 		  $typeEn = new TypeEnseignant();
 		 
 		  // On crée le FormBuilder grâce à la méthode du contrôleur
@@ -238,7 +229,6 @@ class SiteController extends Controller
 			->add('intitule',    'text')
 			->add('heureMaxSem', 'integer')
 			->add('heureMaxAnn', 'integer');
-		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
 		 
 		  // À partir du formBuilder, on génère le formulaire
 		  $form = $formBuilder->getForm();
@@ -254,7 +244,7 @@ class SiteController extends Controller
 			  // On vérifie que les valeurs rentrées sont correctes
 			  // (Nous verrons la validation des objets en détail plus bas dans ce chapitre)
 			  if ($form->isValid()) {
-				// On l'enregistre notre objet $article dans la base de données
+				// On l'enregistre notre objet $typeEn dans la base de données
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($typeEn);
 				$em->flush();
@@ -285,7 +275,6 @@ class SiteController extends Controller
 		  $formBuilder
 			->add('nomG',    'text')
 			->add('semestre', 'entity', array('class' => 'GadiSiteBundle:Semestre', 'property' => 'libelle'));
-		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
 		 
 		  // À partir du formBuilder, on génère le formulaire
 		  $form = $formBuilder->getForm();
@@ -301,13 +290,11 @@ class SiteController extends Controller
 			  // On vérifie que les valeurs rentrées sont correctes
 			  // (Nous verrons la validation des objets en détail plus bas dans ce chapitre)
 			  if ($form->isValid()) {
-				// On l'enregistre notre objet $article dans la base de données
+				// On l'enregistre notre objet $groupe dans la base de données
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($groupe);
 				$em->flush();
-				echo "<script>alert(\"Le groupe est ajouté\")</script>"; 
-				// On redirige vers la page de visualisation de l'article nouvellement créé
-				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
+				echo "<script>alert(\"Le groupe est ajouté\")</script>";
 			  }
 			}
 		 
@@ -334,7 +321,6 @@ class SiteController extends Controller
 			->add('heuresemaine',    'integer')
 			->add('groupe', 'entity', array('class' => 'GadiSiteBundle:Groupe', 'property' => 'nomg'))
 			->add('semaine', 'entity', array('class' => 'GadiSiteBundle:Semaine', 'property' => 'numero'));
-		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
 		 
 		  // À partir du formBuilder, on génère le formulaire
 		  $form = $formBuilder->getForm();
@@ -354,8 +340,6 @@ class SiteController extends Controller
 				$em->persist($quotagroupe);
 				$em->flush();
 				echo "<script>alert(\"Le quota du groupe est ajouté\")</script>";
-				// On redirige vers la page de visualisation de l'article nouvellement créé
-				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
 			  }
 			}
 		 
@@ -435,9 +419,7 @@ class SiteController extends Controller
 		  $formBuilder
 			->add('heureSemaine',    'integer')
 			->add('enseignant', 'entity', array('class' => 'GadiSiteBundle:Enseignant', 'property' => 'nomen'))
-			->add('semaine', 'entity', array('class' => 'GadiSiteBundle:Semaine', 'property' => 'numero'));	
-			;
-		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
+			->add('semaine', 'entity', array('class' => 'GadiSiteBundle:Semaine', 'property' => 'numero'));
 		 
 		  // À partir du formBuilder, on génère le formulaire
 		  $form = $formBuilder->getForm();
@@ -453,7 +435,7 @@ class SiteController extends Controller
 			  // On vérifie que les valeurs rentrées sont correctes
 			 
 			  if ($form->isValid()) {
-				// On l'enregistre notre objet $article dans la base de données
+				// On l'enregistre notre objet $quotaenseignant dans la base de données
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($quotaenseignant);
 				$em->flush();
@@ -486,9 +468,7 @@ class SiteController extends Controller
 			->add('duree', 'integer')
 			->add('date', 'date', array('format' => 'dd-MM-yyyy'))
 			->add('enseignant', 'entity', array('class' => 'GadiSiteBundle:Enseignant', 'property' => 'nomen'))
-			->add('module', 'entity', array('class' => 'GadiSiteBundle:Module', 'property' => 'libelle'))	
-			;
-		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
+			->add('module', 'entity', array('class' => 'GadiSiteBundle:Module', 'property' => 'libelle'));
 		 
 		  // À partir du formBuilder, on génère le formulaire
 		  $form = $formBuilder->getForm();
@@ -504,12 +484,12 @@ class SiteController extends Controller
 			  // On vérifie que les valeurs rentrées sont correctes
 			 
 			  if ($form->isValid()) {
-				// On l'enregistre notre objet $article dans la base de données
+				// On l'enregistre notre objet $cours dans la base de données
 				$em = $this->getDoctrine()->getManager();
 				$em->persist($cours);
 				$em->flush();
 				echo "<script>alert(\"Le cours a été ajouté\")</script>";
-				// On redirige vers la page de visualisation de l'article nouvellement créé
+				// On redirige vers la page de visualisation du cours nouvellement créé
 				return $this->redirect($this->generateUrl('gadisite_voir_cours', array('id' => $cours->getId())));
 			  }
 			}
@@ -549,7 +529,6 @@ class SiteController extends Controller
 			->add('enseignant', 'entity', array('class' => 'GadiSiteBundle:Enseignant', 'property' => 'nomen'))
 			->add('semestre', 'entity', array('class' => 'GadiSiteBundle:Semestre', 'property' => 'libelle'))	
 			;
-		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
 		 
 		  // À partir du formBuilder, on génère le formulaire
 		  $form = $formBuilder->getForm();
@@ -570,8 +549,6 @@ class SiteController extends Controller
 				$em->persist($module);
 				$em->flush();
 				echo "<script>alert(\"Le module a été ajouté\")</script>";
-				// On redirige vers la page de visualisation de l'article nouvellement créé
-				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
 			  }
 			}
 		 
