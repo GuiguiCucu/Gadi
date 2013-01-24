@@ -102,6 +102,16 @@ class SiteController extends Controller
 		return $this->render('GadiSiteBundle:Site:consultQuotaGroupe.html.twig', array('Array_url'=>$array_url));
 		
 	}
+	  elseif($type=="enseignant") {
+		  $array_url=array();
+		$array_enseignant = $this->getDoctrine()->getRepository('GadiSiteBundle:Enseignant')->findAll();
+		foreach ($array_enseignant as $enseignant) {
+		
+			$array_url[$enseignant->getId()] = $this->generateUrl('gadisite_voir_enseignant', array('id' => $enseignant->getId() ));
+		}
+		return $this->render('GadiSiteBundle:Site:consultEnseignant.html.twig', array('Array_url'=>$array_url));
+		
+	}
   }
   
   /**

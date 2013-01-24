@@ -10,7 +10,7 @@ gadisite_voir:
     pattern:   /voir/{type}
     defaults:  { _controller: GadiSiteBundle:Site:voir }	
     requirements:
-        format: cours|quotagroupe
+        format: cours|quotagroupe|enseignant
 
 gadisite_voir_cours:
     pattern:   /cours/{id}
