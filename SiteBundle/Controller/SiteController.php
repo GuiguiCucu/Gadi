@@ -14,6 +14,7 @@ use Gadi\SiteBundle\Entity\Semaine;
 use Gadi\SiteBundle\Entity\QuotaEnseignant;
 use Gadi\SiteBundle\Entity\Cours;
 use Gadi\SiteBundle\Entity\Module;
+use Gadi\SiteBundle\Entity\EvaluationModule;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
  
@@ -141,9 +142,9 @@ class SiteController extends Controller
 			}
 			return $this->render('GadiSiteBundle:Site:consultModule.html.twig', array('Array_url'=>$array_url));		
 		}
-  }
+	}
   
-  /**
+    /**
      * @Secure(roles="ROLE_SECRETAIRE, ROLE_ENSEIGNANT")
     */
 	public function ajouterAction($type) {
@@ -544,7 +545,7 @@ class SiteController extends Controller
 				// Sinon on déclenche une exception "Accès Interdit"
 				throw new AccessDeniedHttpException('Accès limité aux super admin');
 			}
-			  // On crée un objet quotagroupe
+			  // On crée un objet module
 			  $module = new Module();
 			 
 			  // On crée le FormBuilder grâce à la méthode du contrôleur
@@ -595,7 +596,56 @@ class SiteController extends Controller
 				'form' => $form->createView(),
 			  ));
 		}
+
+		else if ($type=="evaluationmodule") {
+				// On teste que l'utilisateur dispose bien du rôle ROLE_RESP_MODULE
+			if( ! $this->get('security.context')->isGranted('ROLE_RESP_MODULE') )
+			{
+				// Sinon on déclenche une exception "Accès Interdit"
+				throw new AccessDeniedHttpException('Accès limité aux super admin');
+			}
+			  // On crée un objet evaluationmodule
+			  $evaluationmodule = new EvaluationModule();
+			 
+			  // On crée le FormBuilder grâce à la méthode du contrôleur
+			  $formBuilder = $this->createFormBuilder($evaluationmodule);
+			 
+			  // On ajoute les champs de l'entité que l'on veut à notre formulaire
+			  $formBuilder
+				->add('type',    'text')
+				->add('coefficient', 'integer')
+				->add('duree', 'integer')
+				->add('module', 'entity', array('class' => 'GadiSiteBundle:Module', 'property' => 'libelle'));
+			 
+			  // À partir du formBuilder, on génère le formulaire
+			  $form = $formBuilder->getForm();
+			  
+				  // On récupère la requête
+				$request = $this->get('request');
+			 
+				// On vérifie qu'elle est de type POST
+				if ($request->getMethod() == 'POST') {
+				  // On fait le lien Requête <-> Formulaire
+				  $form->bind($request);
+			 
+				  // On vérifie que les valeurs rentrées sont correctes
+				 
+				  if ($form->isValid()) {
+					// On l'enregistre notre objet $article dans la base de données
+					$em = $this->getDoctrine()->getManager();
+					$em->persist($evaluationmodule);
+					$em->flush();
+					echo "<script>alert(\"L'évaluation de ce module a été ajouté\")</script>";
+				  }
+				}
+			 
+			  // On passe la méthode createView() du formulaire à la vue afin qu'elle puisse afficher le formulaire toute seule
+			  return $this->render('GadiSiteBundle:Site:ajouterEvaluationModule.html.twig', array(
+				'form' => $form->createView(),
+			  ));
+		}
 	}
+	
 	
 public function modifierAction($type)
   {
