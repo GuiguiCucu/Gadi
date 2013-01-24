@@ -23,6 +23,7 @@ gadisite_voir_enseignant:
     defaults:  { _controller: GadiSiteBundle:Site:voirEnseignant }	
     requirements:
         id:  \d+	
+
 gadisite_voir_etudiant:
     pattern:   /etudiant/{id}
     defaults:  { _controller: GadiSiteBundle:Site:voirEtudiant }	
