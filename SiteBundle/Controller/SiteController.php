@@ -526,7 +526,12 @@ class SiteController extends Controller
 					$em = $this->getDoctrine()->getManager();
 					$em->persist($cours);
 					$em->flush();
-					echo "<script>alert(\"Le cours a été ajouté\")</script>";
+					$enseignant = $cours->getEnseignant();
+					$enseignant->setHeureAnnee($cours->getDuree());
+					$sm = $this->getDoctrine()->getManager();
+					$sm->persist($enseignant);
+					$sm->flush();					
+					echo "<script>alert(\"Le cours a été ajouté et enseignant mise à jour\")</script>";
 					// On redirige vers la page de visualisation du cours nouvellement créé
 					return $this->redirect($this->generateUrl('gadisite_voir_cours', array('id' => $cours->getId())));
 				  }
