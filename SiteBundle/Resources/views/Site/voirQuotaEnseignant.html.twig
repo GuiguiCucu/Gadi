@@ -1,0 +1,29 @@
+{# src/Gadi/SiteBundle/Resources/views/Site/voir.html.twig #}
+ 
+{% extends "GadiSiteBundle::layout.html.twig" %}
+ 
+{% block title %}
+  Lecture d'un quotaenseignant - {{ parent() }}
+{% endblock %}
+ 
+{% block gadisite_body %}
+ 
+  <h2>quotaenseignant numero {{ quotaenseignant.id }}</h2>
+  <p>
+  l'enseignant
+  {{ quotaenseignant.groupe.nomG }} à  
+  {{ quotaenseignant.heuresemaine }} heures de cours
+  à la semaine {{ quotagroupe.semaine.numero}} 
+  du {{ quotagroupe.semaine.semestre.libelle}} <br/> 
+ 
+  </p>
+ 
+ 
+  <p>
+    <a href="{{ path('gadisite_accueil') }}" class="btn">
+      <i class="icon-chevron-left"></i>
+      Retour à l'accueil
+    </a>
+  </p>
+ 
+{% endblock %}

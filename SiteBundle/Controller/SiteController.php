@@ -71,6 +71,7 @@ class SiteController extends Controller
  
     return $this->render('GadiSiteBundle:Site:voirModule.html.twig', array('module' => $module));
   }
+  
    public function voirGroupeAction($id)
   {
     // $id vaut 5 si l'on a appelé l'URL /site/module/5
@@ -82,6 +83,20 @@ class SiteController extends Controller
     return $this->render('GadiSiteBundle:Site:voirGroupe.html.twig', array('groupe' => $groupe));
   }
  
+
+  
+  	  public function voirQuotaEnseignantAction($id)
+  {
+    // $id vaut 5 si l'on a appelé l'URL /site/cours/5
+         
+    // Ici, on récupèrera depuis la base de données l'cours correspondant à l'id $id
+	
+	$quotaenseignant = $this->getDoctrine()->getRepository('GadiSiteBundle:QuotaEnseignant')->find($id);
+ 
+    return $this->render('GadiSiteBundle:Site:voirQuotaEnseignant.html.twig', array('quotaenseignant' => $quotaenseignant));
+  }
+  
+>>>>>>> Bug après selection consultquotaenseignant
 	  public function voirQuotaGroupeAction($id)
   {
     // $id vaut 5 si l'on a appelé l'URL /site/quotagroupe/5
@@ -146,6 +161,7 @@ class SiteController extends Controller
 		return $this->render('GadiSiteBundle:Site:consultModule.html.twig', array('Array_url'=>$array_url));
 		
 	}
+<<<<<<< HEAD
 	elseif($type=="groupe") {
 		  $array_url=array();
 		$array_groupe = $this->getDoctrine()->getRepository('GadiSiteBundle:Groupe')->findAll();
@@ -154,9 +170,20 @@ class SiteController extends Controller
 			$array_url[$groupe->getId()] = $this->generateUrl('gadisite_voir_groupe', array('id' => $groupe->getId() ));
 		}
 		return $this->render('GadiSiteBundle:Site:consultGroupe.html.twig', array('Array_url'=>$array_url));
+=======
+	  elseif($type=="quotaenseignant") {
+		  $array_url=array();
+		$array_quota_enseignant = $this->getDoctrine()->getRepository('GadiSiteBundle:QuotaEnseignant')->findAll();
+		foreach ($array_quota_enseignant as $quotaenseignant) {
+		
+			$array_url[$quotaenseignant->getId()] = $this->generateUrl('gadisite_voir_quota_enseignant', array('id' => $quotaenseignant->getId() ));
+		}
+		return $this->render('GadiSiteBundle:Site:consultQuotaEnseignant.html.twig', array('Array_url'=>$array_url));
+>>>>>>> Bug après selection consultquotaenseignant
 		
 	}
   }
+	
   
   /**
      * @Secure(roles="ROLE_SECRETAIRE, ROLE_ENSEIGNANT")
