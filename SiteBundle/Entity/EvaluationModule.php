@@ -41,12 +41,12 @@ class EvaluationModule
      * @ORM\Column(name="duree", type="integer")
      */
     private $duree;
-	
-  	/**
-   * @ORM\ManyToOne(targetEntity="Gadi\SiteBundle\Entity\Semestre")
+   
+   	/**
+   * @ORM\ManyToOne(targetEntity="Gadi\SiteBundle\Entity\Module")
    * @ORM\JoinColumn(nullable=false)
    */
-   private $semestre;
+   private $module;
 
 
     /**
@@ -134,7 +134,7 @@ class EvaluationModule
      * @param \Gadi\SiteBundle\Entity\Module $module
      * @return Module
      */
-    public function setSemestre(\Gadi\SiteBundle\Entity\Module $module)
+    public function setModule(\Gadi\SiteBundle\Entity\Module $module)
     {
         $this->module = $module;
     
