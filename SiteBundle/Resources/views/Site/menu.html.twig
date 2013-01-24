@@ -19,7 +19,7 @@
 	{% if is_granted('ROLE_SUPER_ADMIN') %}
 	<li><a href="{{ path('gadisite_ajouter', {'type': "quotagroupe"}) }}">{{ "Créer un quota groupe" }}</a></li>
     {% endif %}
-	{% if is_granted('ROLE_SECRETARIAT') %}
+	{% if is_granted('ROLE_SECRETAIRE') %}
 	<li><a href="{{ path('gadisite_ajouter', {'type': "quotaenseignant"}) }}">{{ "Créer quota enseignant" }}</a></li>
     {% endif %}
 </ul>

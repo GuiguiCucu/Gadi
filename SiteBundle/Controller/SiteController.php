@@ -18,6 +18,7 @@ use Gadi\SiteBundle\Entity\QuotaEnseignant;
 use Gadi\SiteBundle\Entity\Cours;
 use Gadi\SiteBundle\Entity\Module;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
  
 class SiteController extends Controller
 {
@@ -115,11 +116,18 @@ class SiteController extends Controller
   }
   
   /**
-     * @Secure(roles="ROLE_SUPER_ADMIN")
+     * @Secure(roles="ROLE_SECRETAIRE, ROLE_ENSEIGNANT")
     */
   public function ajouterAction($type)
   {
 	if($type=="enseignant") {
+	
+        // On teste que l'utilisateur dispose bien du rôle ROLE_SUPER_ADMIN
+        if( ! $this->get('security.context')->isGranted('ROLE_SUPER_ADMIN') )
+        {
+            // Sinon on déclenche une exception "Accès Interdit"
+            throw new AccessDeniedHttpException('Accès limité aux super admin');
+        }
 		  // On crée un objet Enseignant
 		  $enseignant = new Enseignant();
 		 
@@ -164,6 +172,12 @@ class SiteController extends Controller
 		  ));
 	}
 	else if ($type=="etudiant") {
+	        // On teste que l'utilisateur dispose bien du rôle ROLE_SUPER_ADMIN
+        if( ! $this->get('security.context')->isGranted('ROLE_SUPER_ADMIN') )
+        {
+            // Sinon on déclenche une exception "Accès Interdit"
+            throw new AccessDeniedHttpException('Accès limité aux super admin');
+        }
 		  // On crée un objet Etudiant
 		  $etudiant = new Etudiant();
 		 
@@ -207,6 +221,12 @@ class SiteController extends Controller
 		  ));
 	}
 	else if ($type=="typeEn") {
+	        // On teste que l'utilisateur dispose bien du rôle ROLE_SUPER_ADMIN
+        if( ! $this->get('security.context')->isGranted('ROLE_SUPER_ADMIN') )
+        {
+            // Sinon on déclenche une exception "Accès Interdit"
+            throw new AccessDeniedHttpException('Accès limité aux super admin');
+        }
 		  // On crée un objet Etudiant
 		  $typeEn = new TypeEnseignant();
 		 
@@ -249,6 +269,12 @@ class SiteController extends Controller
 	}
 	
 	else if ($type=="groupe") {
+	        // On teste que l'utilisateur dispose bien du rôle ROLE_SUPER_ADMIN
+        if( ! $this->get('security.context')->isGranted('ROLE_SUPER_ADMIN') )
+        {
+            // Sinon on déclenche une exception "Accès Interdit"
+            throw new AccessDeniedHttpException('Accès limité aux super admin');
+        }
 		  // On crée un objet groupe
 		  $groupe = new Groupe();
 		 
@@ -291,6 +317,12 @@ class SiteController extends Controller
 		  ));
 	}
 	else if ($type=="quotagroupe") {
+	        // On teste que l'utilisateur dispose bien du rôle ROLE_SUPER_ADMIN
+        if( ! $this->get('security.context')->isGranted('ROLE_SUPER_ADMIN') )
+        {
+            // Sinon on déclenche une exception "Accès Interdit"
+            throw new AccessDeniedHttpException('Accès limité aux super admin');
+        }
 		  // On crée un objet quotagroupe
 		  $quotagroupe = new QuotaGroupe();
 		 
@@ -333,6 +365,12 @@ class SiteController extends Controller
 		  ));
 	}
 	else if ($type=="semestre") {
+	        // On teste que l'utilisateur dispose bien du rôle ROLE_SUPER_ADMIN
+        if( ! $this->get('security.context')->isGranted('ROLE_SUPER_ADMIN') )
+        {
+            // Sinon on déclenche une exception "Accès Interdit"
+            throw new AccessDeniedHttpException('Accès limité aux super admin');
+        }
 		  // On crée un objet semestre
 		  $semestre = new Semestre();
 		 
@@ -381,6 +419,12 @@ class SiteController extends Controller
 		  ));
 	}
 	else if ($type=="quotaenseignant") {
+	        // On teste que l'utilisateur dispose bien du rôle ROLE_SECRETAIRE
+        if( ! $this->get('security.context')->isGranted('ROLE_SECRETAIRE') )
+        {
+            // Sinon on déclenche une exception "Accès Interdit"
+            throw new AccessDeniedHttpException('Accès limité aux super admin');
+        }
 		  // On crée un objet quotagroupe
 		  $quotaenseignant = new QuotaEnseignant();
 		 
@@ -414,8 +458,6 @@ class SiteController extends Controller
 				$em->persist($quotaenseignant);
 				$em->flush();
 				echo "<script>alert(\"Le quota enseignant a été ajouté\")</script>";
-				// On redirige vers la page de visualisation de l'article nouvellement créé
-				//return $this->redirect($this->generateUrl('sdzblog_voir', array('id' => $article->getId())));
 			  }
 			}
 		 
@@ -425,6 +467,12 @@ class SiteController extends Controller
 		  ));
 	}
 	else if ($type=="cours") {
+	        // On teste que l'utilisateur dispose bien du rôle ROLE_ENSEIGNANT
+        if( ! $this->get('security.context')->isGranted('ROLE_ENSEIGNANT') )
+        {
+            // Sinon on déclenche une exception "Accès Interdit"
+            throw new AccessDeniedHttpException('Accès limité aux super admin');
+        }
 		  // On crée un objet quotagroupe
 		  $cours = new Cours();
 		 
@@ -472,6 +520,12 @@ class SiteController extends Controller
 		  ));
 	}
 	else if ($type=="module") {
+	        // On teste que l'utilisateur dispose bien du rôle ROLE_RESP_MODULE
+        if( ! $this->get('security.context')->isGranted('ROLE_RESP_MODULE') )
+        {
+            // Sinon on déclenche une exception "Accès Interdit"
+            throw new AccessDeniedHttpException('Accès limité aux super admin');
+        }
 		  // On crée un objet quotagroupe
 		  $module = new Module();
 		 
