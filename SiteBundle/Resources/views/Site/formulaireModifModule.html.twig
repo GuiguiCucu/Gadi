@@ -1,0 +1,28 @@
+<h3>Formulaire d'ajout de module</h3>
+ 
+<div class="well">
+    <form method="post" {{ form_enctype(form) }}>
+	 <div>
+	     <!-- Génération du label. -->
+		  {{ form_label(form.ue, "Unité d'Enseignement") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.ue) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.ue) }}
+	 </div>
+	 <div>
+		  <!-- Génération du label. -->
+		  {{ form_label(form.libelle, "Nom du module") }}
+		 
+		  <!-- Affichage des erreurs pour ce champ précis. -->
+		  {{ form_errors(form.libelle) }}
+		 
+		  <!-- Génération de l'input. -->
+		  {{ form_widget(form.libelle) }}
+	 </div>
+     {{ form_widget(form) }}
+     <input type="submit" class="btn btn-primary" />
+    </form>
+</div>
