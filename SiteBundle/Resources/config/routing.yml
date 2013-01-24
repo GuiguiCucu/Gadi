@@ -34,6 +34,12 @@ gadisite_voir_groupe:
     requirements:
         id:  \d+		
 
+gadisite_voir_quota_enseignant:
+    pattern:   /quotaenseignant/{id}
+    defaults:  { _controller: GadiSiteBundle:Site:voirQuotaenseignant }
+    requirements:
+        id:  \d+		
+
 gadisite_voir_module:
     pattern:   /module/{id}
     defaults:  { _controller: GadiSiteBundle:Site:voirModule }	
@@ -45,7 +51,7 @@ gadisite_voir_quota_groupe:
     defaults:  { _controller: GadiSiteBundle:Site:voirQuotaGroupe }	
     requirements:
         id:  \d+		
-     
+
 gadisite_ajouter:
     pattern:   /ajouter/{type}
     defaults:  { _controller: GadiSiteBundle:Site:ajouter }

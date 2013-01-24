@@ -96,7 +96,7 @@ class SiteController extends Controller
     return $this->render('GadiSiteBundle:Site:voirQuotaEnseignant.html.twig', array('quotaenseignant' => $quotaenseignant));
   }
   
->>>>>>> Bug après selection consultquotaenseignant
+
 	  public function voirQuotaGroupeAction($id)
   {
     // $id vaut 5 si l'on a appelé l'URL /site/quotagroupe/5
@@ -161,7 +161,7 @@ class SiteController extends Controller
 		return $this->render('GadiSiteBundle:Site:consultModule.html.twig', array('Array_url'=>$array_url));
 		
 	}
-<<<<<<< HEAD
+
 	elseif($type=="groupe") {
 		  $array_url=array();
 		$array_groupe = $this->getDoctrine()->getRepository('GadiSiteBundle:Groupe')->findAll();
@@ -170,8 +170,8 @@ class SiteController extends Controller
 			$array_url[$groupe->getId()] = $this->generateUrl('gadisite_voir_groupe', array('id' => $groupe->getId() ));
 		}
 		return $this->render('GadiSiteBundle:Site:consultGroupe.html.twig', array('Array_url'=>$array_url));
-=======
-	  elseif($type=="quotaenseignant") {
+    }
+	elseif($type=="quotaenseignant") {
 		  $array_url=array();
 		$array_quota_enseignant = $this->getDoctrine()->getRepository('GadiSiteBundle:QuotaEnseignant')->findAll();
 		foreach ($array_quota_enseignant as $quotaenseignant) {
@@ -179,7 +179,6 @@ class SiteController extends Controller
 			$array_url[$quotaenseignant->getId()] = $this->generateUrl('gadisite_voir_quota_enseignant', array('id' => $quotaenseignant->getId() ));
 		}
 		return $this->render('GadiSiteBundle:Site:consultQuotaEnseignant.html.twig', array('Array_url'=>$array_url));
->>>>>>> Bug après selection consultquotaenseignant
 		
 	}
   }
