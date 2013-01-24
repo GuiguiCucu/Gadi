@@ -42,7 +42,7 @@ class SiteController extends Controller
 	
 	$cours = $this->getDoctrine()->getRepository('GadiSiteBundle:Cours')->find($id);
  
-    return $this->render('GadiSiteBundle:Site:voirCours.html.twig', array('cours' => $cours));
+    return $this->render('GadiSiteBundle:Site:voirCour.html.twig', array('cours' => $cours));
   }
   
   public function voirEnseignantAction($id)
@@ -81,12 +81,13 @@ class SiteController extends Controller
     public function voirAction($type)
   {
 	if($type=="cours") {
-
+		$array_url=array();
 		$array_cours = $this->getDoctrine()->getRepository('GadiSiteBundle:Cours')->findAll();
 		foreach ($array_cours as $cours) {
 		
-			$this->generateUrl('gadisite_voir_cours', array('id' => $cours->getId() ));
+			$array_url[$cours->getId()] = $this->generateUrl('gadisite_voir_cours', array('id' => $cours->getId() ));
 		}
+		return $this->render('GadiSiteBundle:Site:voirCours.html.twig', array('Array_url'=>$array_url));
 		
 		
 	}

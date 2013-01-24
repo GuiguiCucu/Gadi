@@ -1,0 +1,27 @@
+{# src/Gadi/SiteBundle/Resources/views/Site/voir.html.twig #}
+ 
+{% extends "GadiSiteBundle::layout.html.twig" %}
+ 
+{% block title %}
+  Lecture d'un cours - {{ parent() }}
+{% endblock %}
+ 
+{% block gadisite_body %}
+ 
+  <h2>Cours numero {{ cours.id }}</h2>
+  <p>
+  {{ cours.type }} <br/>
+  {{ cours.typeSalle }} <br/>
+  {{ cours.duree }} heures <br/>
+  A lieu le {{ cours.date |date("d-m-Y") }}
+  </p>
+ 
+ 
+  <p>
+    <a href="{{ path('gadisite_accueil') }}" class="btn">
+      <i class="icon-chevron-left"></i>
+      Retour à l'accueil
+    </a>
+  </p>
+ 
+{% endblock %}
