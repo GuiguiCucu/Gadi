@@ -28,19 +28,10 @@ class SiteController extends Controller
 	));
   }
      
-  public function menuAction($nombre) // Ici, nouvel argument $nombre, on a transmis via le with depuis la vue
+  public function menuAction()
   {
-    // On fixe en dur une liste ici, bien entendu par la suite on la récupérera depuis la BDD !
-    // On pourra récupérer $nombre articles depuis la BDD, avec $nombre un paramètre qu'on peut changer lorsqu'on appelle cette action
-    $liste = array(
-      array('id' => 2, 'titre' => 'Mon dernier weekend !'),
-      array('id' => 5, 'titre' => 'Sortie de Symfony2.1'),
-      array('id' => 9, 'titre' => 'Petit test')
-    );
      
-    return $this->render('GadiSiteBundle:Site:menu.html.twig', array(
-      'liste_articles' => $liste // C'est ici tout l'intérêt : le contrôleur passe les variables nécessaires au template !
-    ));
+    return $this->render('GadiSiteBundle:Site:menu.html.twig');
    }
   
   public function voirCoursAction($id)
@@ -66,6 +57,17 @@ class SiteController extends Controller
   }
   
   public function voirModuleAction($id)
+  {
+    // $id vaut 5 si l'on a appelé l'URL /site/cours/5
+         
+    // Ici, on récupèrera depuis la base de données l'cours correspondant à l'id $id
+	
+	$module = $this->getDoctrine()->getRepository('GadiSiteBundle:Module')->find($id);
+ 
+    return $this->render('GadiSiteBundle:Site:voirModule.html.twig', array('module' => $module));
+  }
+  
+  public function voirQuotaGroupeAction($id)
   {
     // $id vaut 5 si l'on a appelé l'URL /site/cours/5
          
@@ -113,7 +115,7 @@ class SiteController extends Controller
 			  $form->bind($request);
 			  // On vérifie que les valeurs rentrées sont correctes			 
 			  if ($form->isValid()) {
-				return $this->redirect($this->generateUrl('gadisite_voir_cours', array('id' => $quotagroupe->getId())));
+				return $this->redirect($this->generateUrl('gadisite_voir_quota_groupe', array('id' => $quotagroupe->getId())));
 			  }
 			}
 		 
