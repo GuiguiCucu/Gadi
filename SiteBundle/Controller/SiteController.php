@@ -616,7 +616,7 @@ public function modifierAction($type)
 		}
 		if ($form->isValid()){ 
 				foreach ($array_module as $module){
-			        if ($module->getUe() == $request->get('ue') && $module->getLibelle() == $request->('libelle')){
+			        if ($module->getUe() == $request->get('ue') && $module->getLibelle() == $request->get('libelle')){
 					    $id = $module->getId();
 					}
 		        }
