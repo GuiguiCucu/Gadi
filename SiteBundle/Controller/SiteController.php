@@ -595,4 +595,60 @@ class SiteController extends Controller
 			  ));
 		}
 	}
+	
+public function modifierAction($type)
+  {
+	if ($type=="module") {
+        if( ! $this->get('security.context')->isGranted('ROLE_RESP_MODULE') )
+        {
+            throw new AccessDeniedHttpException('Accès limité aux super admin');
+        }
+		$array_module = $this->getDoctrine()->getManager()->getRepository('GadiSiteBundle:Module')->findAll();
+		$formBuilder = $this->createFormBuilder();
+		    $formBuilder
+			 ->add('ue',    'text')
+			 ->add('libelle', 'text');
+		$form = $formBuilder->getForm();
+		$request = $this->get('request');
+		if ($request->getMethod() == 'POST') {
+			  $form->bind($request);
+		}
+		if ($form->isValid()){ 
+				foreach ($array_module as $module){
+			        if ($module->getUe() == $request->get('ue') && $module->getLibelle() == $request->('libelle')){
+					    $id = $module->getId();
+					}
+		        }
+		}
+		$formBuilder2 = $this->createFormBuilder();
+		    $formBuilder2
+			    ->add('ue',    'text')
+			    ->add('libelle', 'text')
+			    ->add('heurecm', 'integer')
+			    ->add('typesallecm', 'text')
+			    ->add('nbgroupes', 'integer')
+			    ->add('heuretd', 'integer')
+			    ->add('typesalletd', 'text')
+			    ->add('nbgroupestd', 'integer')
+			    ->add('heuretp', 'integer')
+			    ->add('typesalletp', 'text')
+			    ->add('nbgroupestp', 'integer')
+			    ->add('coefglobal', 'integer')
+			    ->add('enseignant', 'entity', array('class' => 'GadiSiteBundle:Enseignant', 'property' => 'nomen'))
+			    ->add('semestre', 'entity', array('class' => 'GadiSiteBundle:Semestre', 'property' => 'libelle'));
+		$form2 = $formBuilder2->getForm();
+		$request2 = $this->get('request');
+		if ($request2->getMethod() == 'POST') {
+			  $form2->bind($request2);
+		}
+		if ($form->isValid()) {
+		    $em = $this->getDoctrine()->getManager();
+		    $em->flush();
+			echo "<script>alert(\"Le module a été modifié\")</script>";
+	    }
+		  
+		return $this->render('GadiSiteBundle:Site:modifierModule.html.twig', array(
+			'form' => $form2->createView()));
+	}
+   }
 }

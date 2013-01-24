@@ -15,6 +15,7 @@
     {% endif %}
 	{% if is_granted('ROLE_RESP_MODULE') %}
 	<li><a href="{{ path('gadisite_ajouter', {'type': "module"}) }}">{{ "Ajouter un module" }}</a></li>
+   	<li><a href="{{ path('gadisite_modifier', {'type': "module"}) }}">{{ "Modifier un module" }}</a></li>
     {% endif %}
 	{% if is_granted('ROLE_SUPER_ADMIN') %}
 	<li><a href="{{ path('gadisite_ajouter', {'type': "quotagroupe"}) }}">{{ "Créer un quota groupe" }}</a></li>
