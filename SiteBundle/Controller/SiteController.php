@@ -23,9 +23,7 @@ class SiteController extends Controller
 {
   public function indexAction()
   {
-    return $this->render('GadiSiteBundle:Site:index.html.twig', array(
-	'articles' => array()
-	));
+    return $this->render('GadiSiteBundle:Site:index.html.twig');
   }
      
   public function menuAction()

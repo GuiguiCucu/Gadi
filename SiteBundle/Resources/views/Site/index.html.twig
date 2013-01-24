@@ -3,23 +3,16 @@
 {% extends "GadiSiteBundle::layout.html.twig" %}
  
 {% block title %}
-  Accueil - {{ parent() }}
+	 Accueil - {{ parent() }}
 {% endblock %}
  
 {% block gadisite_body %}
  
-  <h2>Liste des articles</h2>
- 
-  <ul>
-    {% for article in articles %}
-      <li>
-        <a href="{{ path('gadisite_voir', {'id': article.id}) }}">{{ article.titre }}</a>
-        par {{ article.auteur }},
-        le {{ article.date|date('d/m/Y') }}
-      </li>
-    {% else %}
-      <li>Pas (encore !) d'articles</li>
-    {% endfor %}
-  </ul>
+	 <h2>Bienvenue {{app.user.username}}</h2>
+	 <p>
+		 Vous êtes ici sur la page d'accueil du projet de gestion administrative
+		 du département informatique crée par  le groupe 9
+		 (BODIN Joris, CUTRONE Guillaume, MEUGNIOT Dylan, CHAMBAT Alexis, GRILLO Batiste).
+	 </p>
  
 {% endblock %}
