@@ -1,0 +1,29 @@
+{# src/Gadi/SiteBundle/Resources/views/Site/voir.html.twig #}
+ 
+{% extends "GadiSiteBundle::layout.html.twig" %}
+ 
+{% block title %}
+  Lecture d'un quotagroupe - {{ parent() }}
+{% endblock %}
+ 
+{% block gadisite_body %}
+ 
+  <h2>quotagroupe numero {{ quotagroupe.id }}</h2>
+  <p>
+  le groupe
+  {{ quotagroupe.groupe.nomG }} à  
+  {{ quotagroupe.heuresemaine }} heures de cours
+  à la semaine {{ quotagroupe.semaine.numero}} 
+  du {{ quotagroupe.semaine.semestre.libelle}} <br/> 
+ 
+  </p>
+ 
+ 
+  <p>
+    <a href="{{ path('gadisite_accueil') }}" class="btn">
+      <i class="icon-chevron-left"></i>
+      Retour à l'accueil
+    </a>
+  </p>
+ 
+{% endblock %}

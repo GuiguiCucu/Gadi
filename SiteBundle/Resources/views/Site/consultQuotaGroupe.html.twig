@@ -1,4 +1,4 @@
-{# src/Gadi/SiteBundle/Resources/views/index.html.twig #}
+  {# src/Gadi/SiteBundle/Resources/views/index.html.twig #}
   
 {% extends "GadiSiteBundle::layout.html.twig" %}
  
@@ -7,9 +7,18 @@
 {% endblock %}
  
 {% block gadisite_body %}
+ {% set i = 1 %}
+     {%for url in Array_url%}
+         <p><a href={{url}}>quotagroupe numero {{i}}</a></p>
+		 {% set i=i+1 %}
+    {%endfor %}
  
+     <p>
+         <a href="{{ path('gadisite_accueil') }}" class="btn">
+         <i class="icon-chevron-left"></i>
+         Retour à l'accueil
+         </a>
+	 </p>
   <h2>consulter quotagroupe</h2>
- 
-{% include "GadiSiteBundle:Site:formulairequotagroupes.html.twig" %}
  
 {% endblock %}

@@ -65,17 +65,20 @@ class SiteController extends Controller
     return $this->render('GadiSiteBundle:Site:voirModule.html.twig', array('module' => $module));
   }
   
-  public function voirQuotaGroupeAction($id)
+ 
+ 
+ 
+	  public function voirQuotaGroupeAction($id)
   {
     // $id vaut 5 si l'on a appelé l'URL /site/cours/5
          
     // Ici, on récupèrera depuis la base de données l'cours correspondant à l'id $id
 	
-	$module = $this->getDoctrine()->getRepository('GadiSiteBundle:Module')->find($id);
+	$quotagroupe = $this->getDoctrine()->getRepository('GadiSiteBundle:QuotaGroupe')->find($id);
  
-    return $this->render('GadiSiteBundle:Site:voirModule.html.twig', array('module' => $module));
+    return $this->render('GadiSiteBundle:Site:voirQuotaGroupe.html.twig', array('quotagroupe' => $quotagroupe));
   }
-  
+
     public function voirAction($type)
   {
 	if($type=="cours") {
@@ -89,39 +92,15 @@ class SiteController extends Controller
 		
 		
 	}
-	elseif($type=="quotagroupe") {
-		  // On crée un objet quotagroupe
-		  $quotagroupe = new QuotaGroupe(); //a verifier si utile
-		 
-		  // On crée le FormBuilder grâce à la méthode du contrôleur
-		  $formBuilder = $this->createFormBuilder($quotagroupe);
-		 
-		  // On ajoute les champs de l'entité que l'on veut à notre formulaire
-		  $formBuilder
-			->add('groupe', 'entity', array('class' => 'GadiSiteBundle:Groupe', 'property' => 'nomg'))
-			->add('semaine', 'entity', array('class' => 'GadiSiteBundle:Semaine', 'property' => 'numero'));
-		  // Pour l'instant, pas de commentaires, catégories, etc., on les gérera plus tard
+	  elseif($type=="quotagroupe") {
+		  $array_url=array();
+		$array_quota_groupe = $this->getDoctrine()->getRepository('GadiSiteBundle:QuotaGroupe')->findAll();
+		foreach ($array_quota_groupe as $quotagroupe) {
 		
-		  // À partir du formBuilder, on génère le formulaire
-		  $form = $formBuilder->getForm();
-		  
-		      // On récupère la requête
-			$request = $this->get('request');
-		 
-			// On vérifie qu'elle est de type POST
-			if ($request->getMethod() == 'POST') {
-			  // On fait le lien Requête <-> Formulaire
-			  $form->bind($request);
-			  // On vérifie que les valeurs rentrées sont correctes			 
-			  if ($form->isValid()) {
-				return $this->redirect($this->generateUrl('gadisite_voir_quota_groupe', array('id' => $quotagroupe->getId())));
-			  }
-			}
-		 
-		  // On passe la méthode createView() du formulaire à la vue afin qu'elle puisse afficher le formulaire toute seule
-		  return $this->render('GadiSiteBundle:Site:consultQuotaGroupe.html.twig', array(
-			'form' => $form->createView(),
-		  ));
+			$array_url[$quotagroupe->getId()] = $this->generateUrl('gadisite_voir_quota_groupe', array('id' => $quotagroupe->getId() ));
+		}
+		return $this->render('GadiSiteBundle:Site:consultQuotaGroupe.html.twig', array('Array_url'=>$array_url));
+		
 	}
   }
   
