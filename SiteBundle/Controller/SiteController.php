@@ -165,7 +165,8 @@ class SiteController extends Controller
 			  $formBuilder
 				->add('nomEn',    'text')
 				->add('prenomEn', 'text')
-				->add('typeEnseignant', 'entity', array('class' => 'GadiSiteBundle:TypeEnseignant', 'property' => 'intitule'));
+				->add('typeEnseignant', 'entity', array('class' => 'GadiSiteBundle:TypeEnseignant', 'property' => 'intitule'))
+				->add('user', 'entity', array('class' => 'GadiUserBundle:User', 'property' => 'username'));
 			 
 			  // À partir du formBuilder, on génère le formulaire
 			  $form = $formBuilder->getForm();

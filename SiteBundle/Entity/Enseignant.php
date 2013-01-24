@@ -46,6 +46,11 @@ class Enseignant
      * @ORM\Column(name="heureAnnee", type="integer")
      */
     private $heureAnnee;
+	
+	/**
+   * @ORM\OneToOne(targetEntity="Gadi\UserBundle\Entity\User", inversedBy="enseignant")
+   */
+	private $user;
 
 	public function __construct()
 	  {
@@ -137,7 +142,7 @@ class Enseignant
      * Set heureAnnee
      *
      * @param integer $heureMaxAnn
-     * @return TypeEnseignant
+     * @return Enseignant
      */
     public function setHeureAnnee($heureAnnee)
     {
@@ -154,5 +159,29 @@ class Enseignant
     public function getHeureAnnee()
     {
         return $this->heureAnnee;
+    }
+	
+	 /**
+     * Set user
+     *
+     * @param \Gadi\UserBundle\Entity\User $user
+     * @return Enseignant
+     */
+    public function setUser(\Gadi\UserBundle\Entity\User $user)
+    {
+        $this->user = $user;
+		$user->setEnseignant($this);
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Gadi\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

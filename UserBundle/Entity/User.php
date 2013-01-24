@@ -18,4 +18,33 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+	
+	/**
+   * @ORM\OneToOne(targetEntity="Gadi\SiteBundle\Entity\Enseignant", mappedBy="user")
+   * @ORM\JoinColumn(nullable=true)
+   */
+	private $enseignant;
+	
+	/**
+     * Set enseignant
+     *
+     * @param \Gadi\SiteBundle\Entity\Enseignant $enseignant
+     * @return User
+     */
+    public function setEnseignant(\Gadi\SiteBundle\Entity\Enseignant $enseignant)
+    {
+        $this->enseignant = $enseignant;
+    
+        return $this;
+    }
+
+    /**
+     * Get enseignant
+     *
+     * @return \Gadi\SiteBundle\Entity\Enseignant 
+     */
+    public function getEnseignant()
+    {
+        return $this->enseignant;
+    }
 }
