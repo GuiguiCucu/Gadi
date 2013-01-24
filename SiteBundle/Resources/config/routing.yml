@@ -28,6 +28,11 @@ gadisite_voir_etudiant:
     defaults:  { _controller: GadiSiteBundle:Site:voirEtudiant }	
     requirements:
         id:  \d+		
+gadisite_voir_groupe:
+    pattern:   /groupe/{id}
+    defaults:  { _controller: GadiSiteBundle:Site:voirGroupe }	
+    requirements:
+        id:  \d+		
 
 gadisite_voir_module:
     pattern:   /module/{id}

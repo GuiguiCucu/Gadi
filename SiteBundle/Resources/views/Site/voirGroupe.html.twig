@@ -1,0 +1,33 @@
+{# src/Gadi/SiteBundle/Resources/views/Site/voir.html.twig #}
+ 
+{% extends "GadiSiteBundle::layout.html.twig" %}
+ 
+{% block title %}
+  Lecture d'un enseignant - {{ parent() }}
+{% endblock %}
+ 
+{% block gadisite_body %}
+ 
+  <h2> groupe {{ groupe.nomG }}</h2>
+  <p>
+ 
+  nom groupe : {{ groupe.nomG}}  <br/> 
+  cours: <br/>
+  {% set i = 1 %}
+	{%for id in groupe.courss%}
+  {{ groupe.courss.id }}<br/> 
+  {% set i=i+1 %}
+  {%endfor %}
+
+ 
+  </p>
+ 
+ 
+  <p>
+    <a href="{{ path('gadisite_accueil') }}" class="btn">
+      <i class="icon-chevron-left"></i>
+      Retour à l'accueil
+    </a>
+  </p>
+ 
+{% endblock %}

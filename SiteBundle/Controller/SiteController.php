@@ -71,9 +71,16 @@ class SiteController extends Controller
  
     return $this->render('GadiSiteBundle:Site:voirModule.html.twig', array('module' => $module));
   }
-  
+   public function voirGroupeAction($id)
+  {
+    // $id vaut 5 si l'on a appelé l'URL /site/module/5
+         
+    // Ici, on récupèrera depuis la base de données du module correspondant à l'id $id
+	
+	$groupe = $this->getDoctrine()->getRepository('GadiSiteBundle:Groupe')->find($id);
  
- 
+    return $this->render('GadiSiteBundle:Site:voirGroupe.html.twig', array('groupe' => $groupe));
+  }
  
 	  public function voirQuotaGroupeAction($id)
   {
@@ -137,6 +144,16 @@ class SiteController extends Controller
 			$array_url[$module->getId()] = $this->generateUrl('gadisite_voir_module', array('id' => $module->getId() ));
 		}
 		return $this->render('GadiSiteBundle:Site:consultModule.html.twig', array('Array_url'=>$array_url));
+		
+	}
+	elseif($type=="groupe") {
+		  $array_url=array();
+		$array_groupe = $this->getDoctrine()->getRepository('GadiSiteBundle:Groupe')->findAll();
+		foreach ($array_groupe as $groupe) {
+		
+			$array_url[$groupe->getId()] = $this->generateUrl('gadisite_voir_groupe', array('id' => $groupe->getId() ));
+		}
+		return $this->render('GadiSiteBundle:Site:consultGroupe.html.twig', array('Array_url'=>$array_url));
 		
 	}
   }
