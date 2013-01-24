@@ -87,7 +87,7 @@ class SiteController extends Controller
 		
 			$array_url[$cours->getId()] = $this->generateUrl('gadisite_voir_cours', array('id' => $cours->getId() ));
 		}
-		return $this->render('GadiSiteBundle:Site:voirCours.html.twig', array('Array_url'=>$array_url));
+		return $this->render('GadiSiteBundle:Site:consultCours.html.twig', array('Array_url'=>$array_url));
 		
 		
 	}
