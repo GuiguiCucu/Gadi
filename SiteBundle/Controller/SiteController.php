@@ -110,6 +110,16 @@ class SiteController extends Controller
 		return $this->render('GadiSiteBundle:Site:consultEnseignant.html.twig', array('Array_url'=>$array_url));
 		
 	}
+	 elseif($type=="module") {
+		  $array_url=array();
+		$array_module = $this->getDoctrine()->getRepository('GadiSiteBundle:Module')->findAll();
+		foreach ($array_module as $module) {
+		
+			$array_url[$module->getId()] = $this->generateUrl('gadisite_voir_module', array('id' => $module->getId() ));
+		}
+		return $this->render('GadiSiteBundle:Site:consultModule.html.twig', array('Array_url'=>$array_url));
+		
+	}
   }
   
   /**
