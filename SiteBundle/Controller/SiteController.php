@@ -51,7 +51,16 @@ class SiteController extends Controller
  
     return $this->render('GadiSiteBundle:Site:voirEnseignant.html.twig', array('enseignant' => $enseignant));
   }
-  
+    public function voirEtudiantAction($id)
+  {
+    // $id vaut 5 si l'on a appelé l'URL /site/enseignant/5
+         
+    // Ici, on récupèrera depuis la base de données de l'enseignant correspondant à l'id $id
+	
+	$etudiant = $this->getDoctrine()->getRepository('GadiSiteBundle:Etudiant')->find($id);
+ 
+    return $this->render('GadiSiteBundle:Site:voirEtudiant.html.twig', array('etudiant' => $etudiant));
+  }
   public function voirModuleAction($id)
   {
     // $id vaut 5 si l'on a appelé l'URL /site/module/5
@@ -108,6 +117,16 @@ class SiteController extends Controller
 			$array_url[$enseignant->getId()] = $this->generateUrl('gadisite_voir_enseignant', array('id' => $enseignant->getId() ));
 		}
 		return $this->render('GadiSiteBundle:Site:consultEnseignant.html.twig', array('Array_url'=>$array_url));
+		
+	}
+	 elseif($type=="etudiant") {
+		  $array_url=array();
+		$array_etudiant = $this->getDoctrine()->getRepository('GadiSiteBundle:Etudiant')->findAll();
+		foreach ($array_etudiant as $etudiant) {
+		
+			$array_url[$etudiant->getId()] = $this->generateUrl('gadisite_voir_etudiant', array('id' => $etudiant->getId() ));
+		}
+		return $this->render('GadiSiteBundle:Site:consultEtudiant.html.twig', array('Array_url'=>$array_url));
 		
 	}
 	 elseif($type=="module") {

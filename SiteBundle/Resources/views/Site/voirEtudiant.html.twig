@@ -1,0 +1,28 @@
+{# src/Gadi/SiteBundle/Resources/views/Site/voir.html.twig #}
+ 
+{% extends "GadiSiteBundle::layout.html.twig" %}
+ 
+{% block title %}
+  Lecture d'un etudiant - {{ parent() }}
+{% endblock %}
+ 
+{% block gadisite_body %}
+ 
+  <h2>numero etudiant {{ etudiant.id }}</h2>
+  <p>
+ 
+  nom :{{ etudiant.prenom}}{{ etudiant.nom }}<br/> 
+  <br/> 
+  groupe :{{ etudiant.groupe.nomg}} <br/> 
+ 
+  </p>
+ 
+ 
+  <p>
+    <a href="{{ path('gadisite_accueil') }}" class="btn">
+      <i class="icon-chevron-left"></i>
+      Retour à l'accueil
+    </a>
+  </p>
+ 
+{% endblock %}
