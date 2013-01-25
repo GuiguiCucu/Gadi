@@ -99,9 +99,9 @@ class Groupe
 	  /**
 		* Add cours
 		*
-		* @param Gadi\SiteBundle\Entity\Cours $categories
+		* @param Gadi\SiteBundle\Entity\Cours $cours
 		*/
-	  public function addCategorie(\Gadi\SiteBundle\Entity\Cours $categorie) // addCategorie sans « s » !
+	  public function addCour(\Gadi\SiteBundle\Entity\Cours $cours) // addCours sans « s » !
 	  {
 		// Ici, on utilise l'ArrayCollection vraiment comme un tableau, avec la syntaxe []
 		$this->courss[] = $cours;
@@ -112,9 +112,9 @@ class Groupe
 		*
 		* @param Gadi\SiteBundle\Entity\Cours $cours
 		*/
-	  public function removeCategorie(\Gadi\SiteBundle\Entity\Cours $cours) // removeCategorie sans « s » !
+	  public function removeCours(\Gadi\SiteBundle\Entity\Cours $cours) // removeCours sans « s » !
 	  {
-		// Ici on utilise une méthode de l'ArrayCollection, pour supprimer la catégorie en argument
+		// Ici on utilise une méthode de l'ArrayCollection, pour supprimer le cours en argument
 		$this->cours->removeElement($cours);
 	  }
 	 
@@ -123,7 +123,7 @@ class Groupe
 		*
 		* @return Doctrine\Common\Collections\Collection
 		*/
-	  public function getCourss() // Notez le « s », on récupère une liste de catégories ici !
+	  public function getCourss() // Notez le « s », on récupère une liste de cours ici !
 	  {
 		return $this->courss;
 	  }
