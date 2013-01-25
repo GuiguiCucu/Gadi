@@ -4,9 +4,10 @@
  
 {% block title %}
   Lecture d'un etudiant - {{ parent() }}
-{% endblock %}
- 
+{% endblock %} 
 {% block gadisite_body %}
+ <h2>Consulter les Etudiant</h2>
+
 	 {% set i = 1 %}
      {%for url in Array_url%}
          <p><a href={{url}}> etudiant{{i}}</a></p>

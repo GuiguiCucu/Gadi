@@ -5,8 +5,10 @@
 {% block title %}
   Lecture d'un cours - {{ parent() }}
 {% endblock %}
+
  
 {% block gadisite_body %}
+ <h2>Consulter les Module</h2>
 	 {% set i = 1 %}
      {%for url in Array_url%}
          <p><a href={{url}}> module{{i}}</a></p>

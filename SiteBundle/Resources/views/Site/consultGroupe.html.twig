@@ -6,7 +6,9 @@
   Lecture d'un groupe - {{ parent() }}
 {% endblock %}
  
+ 
 {% block gadisite_body %}
+<h2>Consulter les Groupe</h2>
 	 {% set i = 1 %}
      {%for url in Array_url%}
          <p><a href={{url}}> groupe{{i}}</a></p>

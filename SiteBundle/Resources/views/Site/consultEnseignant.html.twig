@@ -5,8 +5,10 @@
 {% block title %}
   Accueil - {{ parent() }}
 {% endblock %}
+
  
 {% block gadisite_body %}
+ <h2>Consulter les Enseignant</h2>
  {% set i = 1 %}
      {%for url in Array_url%}
          <p><a href={{url}}>numero enseignant {{i}}</a></p>
@@ -19,6 +21,5 @@
          Retour à l'accueil
          </a>
 	 </p>
-  <h2>consulter enseignant</h2>
  
 {% endblock %}

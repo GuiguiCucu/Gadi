@@ -6,7 +6,9 @@
   Accueil - {{ parent() }}
 {% endblock %}
  
+ 
 {% block gadisite_body %}
+<h2>Consulter les Quota des Groupe</h2>
  {% set i = 1 %}
      {%for url in Array_url%}
          <p><a href={{url}}>quotagroupe numero {{i}}</a></p>
@@ -19,6 +21,5 @@
          Retour à l'accueil
          </a>
 	 </p>
-  <h2>consulter quotagroupe</h2>
  
 {% endblock %}
