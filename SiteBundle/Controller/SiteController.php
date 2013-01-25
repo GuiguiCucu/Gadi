@@ -142,6 +142,26 @@ class SiteController extends Controller
 			}
 			return $this->render('GadiSiteBundle:Site:consultModule.html.twig', array('Array_url'=>$array_url));		
 		}
+		
+		elseif($type=="quotaenseignant") {
+			$array_url=array();
+			$array_quotaenseignant = $this->getDoctrine()->getRepository('GadiSiteBundle:QuotaEnseignant')->findAll();
+			foreach ($array_quotaenseignant as $quotaenseignant) {
+			
+				$array_url[$quotaenseignant->getId()] = $this->generateUrl('gadisite_voir_quota_enseignant', array('id' => $quotaenseignant->getId() ));
+			}
+			return $this->render('GadiSiteBundle:Site:consultQuotaEnseignant.html.twig', array('Array_url'=>$array_url));		
+		}
+		
+		elseif($type=="groupe") {
+			$array_url=array();
+			$array_groupe = $this->getDoctrine()->getRepository('GadiSiteBundle:Groupe')->findAll();
+			foreach ($array_groupe as $groupe) {
+			
+				$array_url[$groupe->getId()] = $this->generateUrl('gadisite_voir_groupe', array('id' => $groupe->getId() ));
+			}
+			return $this->render('GadiSiteBundle:Site:consultGroupe.html.twig', array('Array_url'=>$array_url));		
+		}
 	}
   
     /**
