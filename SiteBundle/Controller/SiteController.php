@@ -78,7 +78,16 @@ class SiteController extends Controller
 	 
 		return $this->render('GadiSiteBundle:Site:voirModule.html.twig', array('module' => $module));
 	}
-  
+  	public function voirGroupeAction($id)
+	{
+		// $id vaut 5 si l'on a appelé l'URL /site/quotagroupe/5
+			 
+		// Ici, on récupèrera depuis la base de données de quotagroupe correspondant à l'id $id
+		
+		$groupe = $this->getDoctrine()->getRepository('GadiSiteBundle:Groupe')->find($id);
+	 
+		return $this->render('GadiSiteBundle:Site:voirGroupe.html.twig', array('groupe' => $groupe));
+	}
   
 	public function voirQuotaGroupeAction($id)
 	{
